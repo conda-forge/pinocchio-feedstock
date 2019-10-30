@@ -1,5 +1,5 @@
 {% set name = "pinocchio" %}
-{% set version = "2.1.9" %}
+{% set version = "2.1.11" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/stack-of-tasks/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: c694a9cd0669258a9655b4b45c283547eab40a7a86c8717b163c811fc351c12d
+  sha256: b3f8ffbe4fc29c556e1bcfd93dcb1ff1d1e13f5a20bd6c2133e2a084ae668776
 
 build:
   number: 0
