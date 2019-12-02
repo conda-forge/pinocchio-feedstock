@@ -8,9 +8,11 @@ package:
 source:
   url: https://github.com/stack-of-tasks/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
   sha256: 198f10101c97bd421136e2b8d427e1f19ce3c07b1bc31c572107dbc9c94c941b
+  patches:
+    - python.patch
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win]
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
