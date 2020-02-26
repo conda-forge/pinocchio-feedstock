@@ -1,7 +1,7 @@
 MACOSX_DEPLOYMENT_TARGET:
 - '10.9'
 boost:
-- 1.70.0
+- '1.72'
 channel_sources:
 - conda-forge,defaults
 channel_targets:
