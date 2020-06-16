@@ -1,5 +1,5 @@
 {% set name = "pinocchio" %}
-{% set version = "2.4.5" %}
+{% set version = "2.4.6" %}
 
 package:
   name: {{ name|lower }}
@@ -7,20 +7,21 @@ package:
 
 source:
   url: https://github.com/stack-of-tasks/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 559fe0ffc969b4dca964525bbba69362dbec821dc216c6f9f2f71b33bcbc9fda
+  sha256: 704a0ced354105d13bae294af672bbab6f5b3d696980eef31d9a5b16b2865ed4
 
 build:
-  number: 3
-  skip: true  # [win]
+  number: 0
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
 
 requirements:
   build:
-    - {{ compiler('cxx') }}
+    - {{ compiler('cxx') }}  # [not win]
+    - vs2017_win-64  # [win64]
+    - vs2017_win-32  # [win32]
     - cmake
-    - make
-    - pkg-config
+    - clang  # [win]
+    - make  # [not win]
   host:
     - eigen
     - eigenpy
@@ -40,7 +41,7 @@ test:
     - pkg-config
   commands:
     - pkg-config --modversion {{ name }}
-    - test -f $PREFIX/lib/lib{{ name }}${SHLIB_EXT}
+    - test -f $PREFIX/lib/lib{{ name }}${SHLIB_EXT}  # [not win]
   imports:
     - pinocchio
 
