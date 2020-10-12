@@ -5,11 +5,11 @@ Home: http://github.com/stack-of-tasks/pinocchio
 
 Package license: BSD-2-Clause
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pinocchio-feedstock/blob/master/LICENSE.txt)
 
 Summary: A fast and flexible implementation of Rigid Body Dynamics algorithms and their analytical derivatives
 
-
+Development: https://github.com/stack-of-tasks/pinocchio
 
 Current build status
 ====================
@@ -29,87 +29,87 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64_boost1.72.0python3.6.____cpython</td>
+              <td>linux_64_boost1.72.0cxx_compiler_version7python3.6.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7395&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/pinocchio-feedstock?branchName=master&jobName=linux&configuration=linux_64_boost1.72.0python3.6.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/pinocchio-feedstock?branchName=master&jobName=linux&configuration=linux_64_boost1.72.0cxx_compiler_version7python3.6.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_boost1.72.0python3.7.____cpython</td>
+              <td>linux_64_boost1.72.0cxx_compiler_version7python3.7.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7395&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/pinocchio-feedstock?branchName=master&jobName=linux&configuration=linux_64_boost1.72.0python3.7.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/pinocchio-feedstock?branchName=master&jobName=linux&configuration=linux_64_boost1.72.0cxx_compiler_version7python3.7.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_boost1.72.0python3.8.____cpython</td>
+              <td>linux_64_boost1.72.0cxx_compiler_version7python3.8.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7395&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/pinocchio-feedstock?branchName=master&jobName=linux&configuration=linux_64_boost1.72.0python3.8.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/pinocchio-feedstock?branchName=master&jobName=linux&configuration=linux_64_boost1.72.0cxx_compiler_version7python3.8.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_boost1.74.0python3.6.____cpython</td>
+              <td>linux_64_boost1.74.0cxx_compiler_version7python3.6.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7395&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/pinocchio-feedstock?branchName=master&jobName=linux&configuration=linux_64_boost1.74.0python3.6.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/pinocchio-feedstock?branchName=master&jobName=linux&configuration=linux_64_boost1.74.0cxx_compiler_version7python3.6.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_boost1.74.0python3.7.____cpython</td>
+              <td>linux_64_boost1.74.0cxx_compiler_version7python3.7.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7395&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/pinocchio-feedstock?branchName=master&jobName=linux&configuration=linux_64_boost1.74.0python3.7.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/pinocchio-feedstock?branchName=master&jobName=linux&configuration=linux_64_boost1.74.0cxx_compiler_version7python3.7.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_64_boost1.74.0python3.8.____cpython</td>
+              <td>linux_64_boost1.74.0cxx_compiler_version7python3.8.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7395&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/pinocchio-feedstock?branchName=master&jobName=linux&configuration=linux_64_boost1.74.0python3.8.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/pinocchio-feedstock?branchName=master&jobName=linux&configuration=linux_64_boost1.74.0cxx_compiler_version7python3.8.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_boost1.72.0python3.6.____cpython</td>
+              <td>osx_64_boost1.72.0cxx_compiler_version10python3.6.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7395&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/pinocchio-feedstock?branchName=master&jobName=osx&configuration=osx_64_boost1.72.0python3.6.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/pinocchio-feedstock?branchName=master&jobName=osx&configuration=osx_64_boost1.72.0cxx_compiler_version10python3.6.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_boost1.72.0python3.7.____cpython</td>
+              <td>osx_64_boost1.72.0cxx_compiler_version10python3.7.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7395&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/pinocchio-feedstock?branchName=master&jobName=osx&configuration=osx_64_boost1.72.0python3.7.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/pinocchio-feedstock?branchName=master&jobName=osx&configuration=osx_64_boost1.72.0cxx_compiler_version10python3.7.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_boost1.72.0python3.8.____cpython</td>
+              <td>osx_64_boost1.72.0cxx_compiler_version10python3.8.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7395&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/pinocchio-feedstock?branchName=master&jobName=osx&configuration=osx_64_boost1.72.0python3.8.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/pinocchio-feedstock?branchName=master&jobName=osx&configuration=osx_64_boost1.72.0cxx_compiler_version10python3.8.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_boost1.74.0python3.6.____cpython</td>
+              <td>osx_64_boost1.74.0cxx_compiler_version10python3.6.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7395&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/pinocchio-feedstock?branchName=master&jobName=osx&configuration=osx_64_boost1.74.0python3.6.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/pinocchio-feedstock?branchName=master&jobName=osx&configuration=osx_64_boost1.74.0cxx_compiler_version10python3.6.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_boost1.74.0python3.7.____cpython</td>
+              <td>osx_64_boost1.74.0cxx_compiler_version10python3.7.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7395&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/pinocchio-feedstock?branchName=master&jobName=osx&configuration=osx_64_boost1.74.0python3.7.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/pinocchio-feedstock?branchName=master&jobName=osx&configuration=osx_64_boost1.74.0cxx_compiler_version10python3.7.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64_boost1.74.0python3.8.____cpython</td>
+              <td>osx_64_boost1.74.0cxx_compiler_version10python3.8.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7395&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/pinocchio-feedstock?branchName=master&jobName=osx&configuration=osx_64_boost1.74.0python3.8.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/pinocchio-feedstock?branchName=master&jobName=osx&configuration=osx_64_boost1.74.0cxx_compiler_version10python3.8.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
