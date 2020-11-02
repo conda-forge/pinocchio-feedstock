@@ -6,8 +6,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/stack-of-tasks/{{ name }}/archive/v{{ version }}.tar.gz
-  sha256: 8a2760ee29a3d0a7c4ac7578e6cc9d3bc2dc74f043a7d834f3b8a84833f2fb5f
+  url: https://github.com/stack-of-tasks/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 0eeb8e7d749e1b7c22fe6eb8515ec66670f5875c15138fc574a30b6a1b3f6170
 
 build:
   number: 0
