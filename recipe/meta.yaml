@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/stack-of-tasks/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
+  url: https://github.com/stack-of-tasks/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
   sha256: 0eeb8e7d749e1b7c22fe6eb8515ec66670f5875c15138fc574a30b6a1b3f6170
 
 build:
