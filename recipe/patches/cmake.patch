@@ -1,8 +1,76 @@
+diff --git .github/workflows/macos-conda.yml .github/workflows/macos-conda.yml
+new file mode 100644
+index 00000000..6acd41ef
+--- /dev/null
++++ .github/workflows/macos-conda.yml
+@@ -0,0 +1,49 @@
++name: Build Pinocchio for Mac OS X via Conda
++
++on: [push,pull_request]
++
++jobs:
++  pinocchio-osx-conda:
++    runs-on: macos-latest
++
++    steps:
++    - uses: actions/checkout@v2
++
++    - name: Checkout submodules
++      run: |
++        git submodule update --init
++
++    - uses: conda-incubator/setup-miniconda@v2
++      with:
++        activate-environment: pinocchio
++        auto-update-conda: true
++        environment-file: .github/workflows/conda/conda-env.yml
++        python-version: 3.8
++
++    - name: Install cmake and update conda
++      shell: bash -l {0}
++      run: |
++        conda activate pinocchio
++        conda install cmake -c main
++    
++    - name: Build Pinocchio
++      shell: bash -l {0}
++      run: |
++        conda activate pinocchio
++        echo $CONDA_PREFIX
++        
++        mkdir build
++        cd build
++
++        cmake .. -DCMAKE_INSTALL_PREFIX=$CONDA_PREFIX -DCMAKE_BUILD_TYPE=Debug -DBUILD_WITH_COLLISION_SUPPORT=ON -DBUILD_ADVANCED_TESTING=ON -DBUILD_WITH_CASADI_SUPPORT=OFF -DPYTHON_EXECUTABLE=$(which python3) -DBUILD_WITH_OPENMP_SUPPORT=OFF
++        make
++        make build_tests
++        export CTEST_OUTPUT_ON_FAILURE=1
++        make test
++        make install
++
++    - name: Uninstall Pinocchio
++      shell: bash -l {0}
++      run: |
++        cd build
++        make uninstall
+diff --git .github/workflows/windows-conda-v142.yml .github/workflows/windows-conda-v142.yml
+index 82360478..7f7a54f9 100644
+--- .github/workflows/windows-conda-v142.yml
++++ .github/workflows/windows-conda-v142.yml
+@@ -85,7 +85,7 @@ jobs:
+         set PATH=%PATH%;%CONDA_PREFIX%\Library\bin
+         .\unittest\Release\test-cpp-urdf.exe
+         .\examples\Release\example-cpp-geometry-models.exe
+-        ctest --output-on-failure -C Release -V --repeat until-pass:2
++        ctest --output-on-failure -C Release -V --repeat until-pass:5
+ 
+ #        :: Test Python import
+ #        cd ..
 diff --git CMakeLists.txt CMakeLists.txt
-index 4e874c25..6b62b139 100644
+index 4e874c25..dfa920f1 100644
 --- CMakeLists.txt
 +++ CMakeLists.txt
-@@ -144,6 +144,17 @@ IF(BUILD_PYTHON_INTERFACE)
+@@ -144,6 +144,18 @@ IF(BUILD_PYTHON_INTERFACE)
    FINDPYTHON(REQUIRED)
    SEARCH_FOR_BOOST_PYTHON(REQUIRED)
    ADD_PROJECT_DEPENDENCY(eigenpy 2.6.2 REQUIRED)
@@ -12,9 +80,10 @@ index 4e874c25..6b62b139 100644
 +    OUTPUT_VARIABLE _python_implementation_value
 +    OUTPUT_STRIP_TRAILING_WHITESPACE
 +    ERROR_QUIET)
-+
++  
++  MESSAGE(STATUS "Python compiler: ${_python_implementation_value}")
 +  IF(_python_implementation_value MATCHES "PyPy")
-+    SET(BUILD_PYTHON_INTERFACE_WITH_PYPY)
++    SET(BUILD_PYTHON_INTERFACE_WITH_PYPY TRUE)
 +  ENDIF()
 +  
  ELSE(BUILD_PYTHON_INTERFACE)
@@ -44,38 +113,47 @@ index b3641f5c..7223dea5 100644
  If you have taken part to the development of **Pinocchio**, feel free to add your name and contribution in this list.
  
 diff --git bindings/python/CMakeLists.txt bindings/python/CMakeLists.txt
-index c96887c6..70c2cde0 100644
+index c96887c6..80ebc00e 100644
 --- bindings/python/CMakeLists.txt
 +++ bindings/python/CMakeLists.txt
-@@ -49,16 +49,18 @@ FILE(GLOB_RECURSE ${PROJECT_NAME}_PYTHON_SOURCES
+@@ -48,21 +48,24 @@ FILE(GLOB_RECURSE ${PROJECT_NAME}_PYTHON_SOURCES
+      ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp 
       ) 
  
- # Parser for Python model
+-# Parser for Python model
 -LIST(APPEND ${PROJECT_NAME}_PYTHON_HEADERS
 -  parsers/python.hpp
 -  )
 -SET(${PROJECT_NAME}_PARSER_PYTHON_HEADERS
 -  parsers/python.hpp
 -  )
-+IF(NOT BUILD_PYTHON_INTERFACE_WITH_PYPY)
-+  LIST(APPEND ${PROJECT_NAME}_PYTHON_HEADERS
-+    parsers/python.hpp
-+    )
-+  SET(${PROJECT_NAME}_PARSER_PYTHON_HEADERS
-+    parsers/python.hpp
-+    )
- 
+-
 -LIST(APPEND ${PROJECT_NAME}_PYTHON_SOURCES
 -  parsers/python/model.cpp
 -  )
-+  LIST(APPEND ${PROJECT_NAME}_PYTHON_SOURCES
-+    parsers/python/model.cpp
-+    )
-+ENDIF(NOT BUILD_PYTHON_INTERFACE_WITH_PYPY)
- 
+-
  REMOVE_PATH_FROM_LIST("${${PROJECT_NAME}_PYTHON_HEADERS}" "${CMAKE_CURRENT_SOURCE_DIR}/" ${PROJECT_NAME}_PYTHON_HEADERS)
  REMOVE_PATH_FROM_LIST("${${PROJECT_NAME}_PYTHON_SOURCES}" "${CMAKE_CURRENT_SOURCE_DIR}/" ${PROJECT_NAME}_PYTHON_SOURCES)
-@@ -112,8 +114,10 @@ MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/bindings/python/
+ 
++# Parser for Python model
++IF(BUILD_PYTHON_INTERFACE_WITH_PYPY)
++  LIST(REMOVE_ITEM ${PROJECT_NAME}_PYTHON_HEADERS
++    parsers/python.hpp
++    )
++
++  LIST(REMOVE_ITEM ${PROJECT_NAME}_PYTHON_SOURCES
++    parsers/python/model.cpp
++    )
++ELSE(BUILD_PYTHON_INTERFACE_WITH_PYPY)
++  SET(${PROJECT_NAME}_PARSER_PYTHON_HEADERS
++    parsers/python.hpp
++    )
++ENDIF(BUILD_PYTHON_INTERFACE_WITH_PYPY)
++
+ # Python exposition of FCL
+ IF(NOT BUILD_WITH_HPP_FCL_PYTHON_BINDINGS)
+   LIST(REMOVE_ITEM ${PROJECT_NAME}_PYTHON_HEADERS
+@@ -112,8 +115,10 @@ MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/bindings/python/
  SYMLINK_AND_INSTALL_HEADERS("${${PROJECT_NAME}_PYTHON_HEADERS}" "bindings/python")
  
  # Headers of the Python parser
