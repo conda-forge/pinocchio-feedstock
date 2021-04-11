@@ -1,0 +1,112 @@
+diff --git CMakeLists.txt CMakeLists.txt
+index 4e874c25..6b62b139 100644
+--- CMakeLists.txt
++++ CMakeLists.txt
+@@ -144,6 +144,17 @@ IF(BUILD_PYTHON_INTERFACE)
+   FINDPYTHON(REQUIRED)
+   SEARCH_FOR_BOOST_PYTHON(REQUIRED)
+   ADD_PROJECT_DEPENDENCY(eigenpy 2.6.2 REQUIRED)
++  
++  # Check wether this a PyPy Python
++  EXECUTE_PROCESS(COMMAND ${PYTHON_EXECUTABLE} -c "import platform; print(platform.python_implementation())"
++    OUTPUT_VARIABLE _python_implementation_value
++    OUTPUT_STRIP_TRAILING_WHITESPACE
++    ERROR_QUIET)
++
++  IF(_python_implementation_value MATCHES "PyPy")
++    SET(BUILD_PYTHON_INTERFACE_WITH_PYPY)
++  ENDIF()
++  
+ ELSE(BUILD_PYTHON_INTERFACE)
+   MESSAGE(STATUS "Pinocchio won't be compiled with its Python bindings. If you want to enable this feature, please set the option BUILD_PYTHON_INTERFACE to ON.")
+ ENDIF(BUILD_PYTHON_INTERFACE)
+diff --git README.md README.md
+index b3641f5c..7223dea5 100644
+--- README.md
++++ README.md
+@@ -31,10 +31,6 @@ If you want to directly dive into **Pinocchio**, only one single line is suffici
+ conda install pinocchio -c conda-forge
+ </p>
+ 
+-## News
+-
+-**August 2020**: We are **hiring**! We are looking for a talented C++/Python software developer to enhance and promote Pinocchio inside the robotics community and beyond. Please contact @jcarpent for further details.
+-
+ ## Pinocchio main features
+ 
+ **Pinocchio** is fast:
+@@ -164,6 +160,7 @@ The following people have been involved in the development of **Pinocchio** and
+ - [Robin Strudel](https://www.di.ens.fr/robin.strudel/) (Inria): features extension
+ - [François Keith](https://scholar.google.fr/citations?user=cxSxXiQAAAAJ&hl=en) (CEA): Windows support
+ - [Aamr El Kazdadi](https://github.com/aelkazdadi) (Inria): multiprecision arithmetic support
++- [Nicolas Torres Alberto](https://scholar.google.com/citations?user=gYNLhEIAAAAJ&hl=en) (Inria): features extension
+ 
+ If you have taken part to the development of **Pinocchio**, feel free to add your name and contribution in this list.
+ 
+diff --git bindings/python/CMakeLists.txt bindings/python/CMakeLists.txt
+index c96887c6..70c2cde0 100644
+--- bindings/python/CMakeLists.txt
++++ bindings/python/CMakeLists.txt
+@@ -49,16 +49,18 @@ FILE(GLOB_RECURSE ${PROJECT_NAME}_PYTHON_SOURCES
+      ) 
+ 
+ # Parser for Python model
+-LIST(APPEND ${PROJECT_NAME}_PYTHON_HEADERS
+-  parsers/python.hpp
+-  )
+-SET(${PROJECT_NAME}_PARSER_PYTHON_HEADERS
+-  parsers/python.hpp
+-  )
++IF(NOT BUILD_PYTHON_INTERFACE_WITH_PYPY)
++  LIST(APPEND ${PROJECT_NAME}_PYTHON_HEADERS
++    parsers/python.hpp
++    )
++  SET(${PROJECT_NAME}_PARSER_PYTHON_HEADERS
++    parsers/python.hpp
++    )
+ 
+-LIST(APPEND ${PROJECT_NAME}_PYTHON_SOURCES
+-  parsers/python/model.cpp
+-  )
++  LIST(APPEND ${PROJECT_NAME}_PYTHON_SOURCES
++    parsers/python/model.cpp
++    )
++ENDIF(NOT BUILD_PYTHON_INTERFACE_WITH_PYPY)
+ 
+ REMOVE_PATH_FROM_LIST("${${PROJECT_NAME}_PYTHON_HEADERS}" "${CMAKE_CURRENT_SOURCE_DIR}/" ${PROJECT_NAME}_PYTHON_HEADERS)
+ REMOVE_PATH_FROM_LIST("${${PROJECT_NAME}_PYTHON_SOURCES}" "${CMAKE_CURRENT_SOURCE_DIR}/" ${PROJECT_NAME}_PYTHON_SOURCES)
+@@ -112,8 +114,10 @@ MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/bindings/python/
+ SYMLINK_AND_INSTALL_HEADERS("${${PROJECT_NAME}_PYTHON_HEADERS}" "bindings/python")
+ 
+ # Headers of the Python parser
+-MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/parsers/python")
+-SYMLINK_AND_INSTALL_HEADERS("${${PROJECT_NAME}_PARSER_PYTHON_HEADERS}" "")
++IF(NOT BUILD_PYTHON_INTERFACE_WITH_PYPY)
++  MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/include/pinocchio/parsers/python")
++  SYMLINK_AND_INSTALL_HEADERS("${${PROJECT_NAME}_PARSER_PYTHON_HEADERS}" "")
++ENDIF(NOT BUILD_PYTHON_INTERFACE_WITH_PYPY)
+ 
+ # --- COMPILE WRAPPER
+ MAKE_DIRECTORY("${${PROJECT_NAME}_BINARY_DIR}/bindings/python/${PROJECT_NAME}")
+diff --git unittest/CMakeLists.txt unittest/CMakeLists.txt
+index 23484650..60386f55 100644
+--- unittest/CMakeLists.txt
++++ unittest/CMakeLists.txt
+@@ -95,7 +95,7 @@ IF(urdfdom_FOUND)
+   ENDIF(hpp-fcl_FOUND)
+ ENDIF(urdfdom_FOUND)
+ 
+-IF(BUILD_PYTHON_INTERFACE)
++IF(BUILD_PYTHON_INTERFACE AND NOT BUILD_PYTHON_INTERFACE_WITH_PYPY)
+   ADD_PINOCCHIO_UNIT_TEST(python_parser PACKAGES eigenpy)
+   TARGET_INCLUDE_DIRECTORIES(test-cpp-python_parser SYSTEM PUBLIC ${PYTHON_INCLUDE_DIRS})
+ 
+@@ -113,7 +113,7 @@ IF(BUILD_PYTHON_INTERFACE)
+   ENDIF(APPLE)
+   SET_PROPERTY(TEST test-cpp-python_parser PROPERTY ENVIRONMENT ${ENV_VARIABLES})
+   ADD_SUBDIRECTORY(python)
+-ENDIF(BUILD_PYTHON_INTERFACE)
++ENDIF(BUILD_PYTHON_INTERFACE AND NOT BUILD_PYTHON_INTERFACE_WITH_PYPY)
+ 
+ # Test over the joints
+ ADD_PINOCCHIO_UNIT_TEST(all-joints)
