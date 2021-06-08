@@ -8,8 +8,6 @@ package:
 source:
   url: https://github.com/stack-of-tasks/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
   sha256: 7efd9f707386a39f3574f009d39bc9daedb618c52757037ec21c1a50edf0abf6
-  patches:
-    - patches/cmake.patch
 
 build:
   number: 0
