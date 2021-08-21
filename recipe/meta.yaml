@@ -10,7 +10,7 @@ source:
   sha256: a287be23e927d99d3ef7e8c172c6ecb7e0dfcca43e68e27d3fb82aa650aac599
 
 build:
-  number: 1
+  number: 2
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
 
@@ -22,6 +22,9 @@ requirements:
     - cmake
     - clang  # [win]
     - make  # [not win]
+    - python                                 # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+    - numpy                                  # [build_platform != target_platform]
   host:
     - eigen
     - eigenpy
@@ -30,6 +33,7 @@ requirements:
     - boost
     - python
     - llvm-openmp  # [not win]
+    - numpy  # [build_platform != target_platform]
   run:
     - eigen
     - eigenpy
@@ -38,6 +42,7 @@ requirements:
     - boost
     - python
     - llvm-openmp  # [not win]
+    - {{ pin_compatible('numpy') }}  # [build_platform != target_platform]
 test:
   requires:
     - pkg-config
