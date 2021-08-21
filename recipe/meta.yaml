@@ -33,7 +33,7 @@ requirements:
     - boost
     - python
     - llvm-openmp  # [not win]
-    - numpy # [build_platform != target_platform]
+    - numpy  # [build_platform != target_platform]
   run:
     - eigen
     - eigenpy
@@ -42,7 +42,7 @@ requirements:
     - boost
     - python
     - llvm-openmp  # [not win]
-    - {{ pin_compatible('numpy') }} # [build_platform != target_platform]
+    - {{ pin_compatible('numpy') }}  # [build_platform != target_platform]
 test:
   requires:
     - pkg-config
