@@ -1,21 +1,21 @@
-BUILD:
-- aarch64-conda_cos7-linux-gnu
+MACOSX_DEPLOYMENT_TARGET:
+- '10.9'
 boost:
 - 1.74.0
-cdt_arch:
-- aarch64
-cdt_name:
-- cos7
 channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
 cxx_compiler:
-- gxx
+- clangxx
 cxx_compiler_version:
-- '9'
-docker_image:
-- quay.io/condaforge/linux-anvil-aarch64
+- '11'
+llvm_openmp:
+- '11'
+macos_machine:
+- x86_64-apple-darwin13.4.0
+numpy:
+- '1.19'
 pin_run_as_build:
   boost:
     max_pin: x.x.x
@@ -23,6 +23,9 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.8.* *_cpython
+- 3.9.* *_cpython
 target_platform:
-- linux-aarch64
+- osx-64
+zip_keys:
+- - python
+  - numpy
