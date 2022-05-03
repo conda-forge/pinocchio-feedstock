@@ -1,5 +1,5 @@
 {% set name = "pinocchio" %}
-{% set version = "2.6.4" %}
+{% set version = "2.6.7" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/stack-of-tasks/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: e13aca1c0a7737c980ee7496c8ffb669eaf5e8d1f4efe0f74bf4683e3e46414a
+  sha256: 044c7ecc43e5ae2bdd7c83b32684e60668eeea193e7e95d369ceb13c22f1f3bd
 
 build:
-  number: 1
+  number: 0
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
 
@@ -24,6 +24,7 @@ requirements:
     - make  # [not win]
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+    - cython                                 # [build_platform != target_platform]
     - numpy                                  # [build_platform != target_platform]
   host:
     - eigen
