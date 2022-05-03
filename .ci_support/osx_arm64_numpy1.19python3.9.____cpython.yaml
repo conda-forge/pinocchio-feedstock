@@ -9,9 +9,9 @@ channel_targets:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '12'
+- '13'
 llvm_openmp:
-- '12'
+- '13'
 macos_machine:
 - arm64-apple-darwin20.0.0
 numpy:
