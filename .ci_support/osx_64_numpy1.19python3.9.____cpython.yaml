@@ -9,7 +9,7 @@ channel_targets:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '14'
+- '13'
 llvm_openmp:
 - '14'
 macos_machine:
