@@ -21,11 +21,15 @@ cmake ${CMAKE_ARGS} .. \
       -DBUILD_WITH_COLLISION_SUPPORT=ON \
       -DPython3_NumPy_INCLUDE_DIR=$TARGET_NUMPY_INCLUDE_DIRS \
       -DBUILD_WITH_OPENMP_SUPPORT=ON \
-      -DBUILD_TESTING=OFF \
+      -DBUILD_TESTING=ON \
       -DPYTHON_EXECUTABLE=$PYTHON
 
 make -j${CPU_COUNT}
 make install
+
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" || "${CROSSCOMPILING_EMULATOR}" != "" ]]; then
+  ctest --output-on-failure -C Release
+fi
 
 if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then
   echo $BUILD_PREFIX
