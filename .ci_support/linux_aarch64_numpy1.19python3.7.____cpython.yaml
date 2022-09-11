@@ -1,7 +1,7 @@
 BUILD:
 - aarch64-conda_cos7-linux-gnu
 boost:
-- 1.74.0
+- 1.78.0
 cdt_arch:
 - aarch64
 cdt_name:
