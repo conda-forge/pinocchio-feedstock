@@ -1,5 +1,5 @@
 boost:
-- 1.74.0
+- 1.78.0
 cdt_name:
 - cos7
 channel_sources:
@@ -24,6 +24,8 @@ python:
 - 3.10.* *_cpython
 target_platform:
 - linux-ppc64le
+urdfdom:
+- '3.1'
 zip_keys:
 - - python
   - numpy
