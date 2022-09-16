@@ -320,6 +320,5 @@ Feedstock Maintainers
 
 * [@jcarpent](https://github.com/jcarpent/)
 * [@lesteve](https://github.com/lesteve/)
-* [@proyan](https://github.com/proyan/)
 * [@wolfv](https://github.com/wolfv/)
 
