@@ -32,6 +32,7 @@ requirements:
     - urdfdom
     - hpp-fcl  # [hpp_version == 'main']
     - hpp-fcl  1.8.1  # [hpp_version == 'v1']
+    - boost
     - python
     - llvm-openmp  # [not win]
     - numpy
