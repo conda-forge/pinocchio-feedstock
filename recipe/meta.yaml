@@ -30,8 +30,8 @@ requirements:
     - eigen
     - eigenpy
     - urdfdom
-    - hpp-fcl
-    - boost
+    - hpp-fcl  # [hpp_version == 'main']
+    - hpp-fcl  1.8.1  # [hpp_version == 'v1']
     - python
     - llvm-openmp  # [not win]
     - numpy
@@ -66,3 +66,4 @@ extra:
     - jcarpent
     - wolfv
     - lesteve
+    - ydemontm
