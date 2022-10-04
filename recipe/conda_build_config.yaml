@@ -1,3 +1,6 @@
+hpp_version:
+  - v1
+  - main
 c_compiler_version:        # [osx and x86_64]
   - 13                     # [osx and x86_64]
 cxx_compiler_version:      # [osx and x86_64]
