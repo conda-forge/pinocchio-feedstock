@@ -1,7 +1,7 @@
 boost:
 - 1.78.0
 cdt_name:
-- cos7
+- cos6
 channel_sources:
 - conda-forge
 channel_targets:
@@ -23,9 +23,9 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.7.* *_cpython
+- 3.9.* *_73_pypy
 target_platform:
-- linux-ppc64le
+- linux-64
 urdfdom:
 - '3.1'
 zip_keys:

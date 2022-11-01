@@ -8,11 +8,14 @@ jobs:
     vmImage: macOS-11
   strategy:
     matrix:
-      osx_64_hpp_versionmainnumpy1.20python3.7.____cpython:
-        CONFIG: osx_64_hpp_versionmainnumpy1.20python3.7.____cpython
+      osx_64_hpp_versionmainnumpy1.20python3.8.____73_pypy:
+        CONFIG: osx_64_hpp_versionmainnumpy1.20python3.8.____73_pypy
         UPLOAD_PACKAGES: 'True'
       osx_64_hpp_versionmainnumpy1.20python3.8.____cpython:
         CONFIG: osx_64_hpp_versionmainnumpy1.20python3.8.____cpython
+        UPLOAD_PACKAGES: 'True'
+      osx_64_hpp_versionmainnumpy1.20python3.9.____73_pypy:
+        CONFIG: osx_64_hpp_versionmainnumpy1.20python3.9.____73_pypy
         UPLOAD_PACKAGES: 'True'
       osx_64_hpp_versionmainnumpy1.20python3.9.____cpython:
         CONFIG: osx_64_hpp_versionmainnumpy1.20python3.9.____cpython
@@ -20,11 +23,14 @@ jobs:
       osx_64_hpp_versionmainnumpy1.21python3.10.____cpython:
         CONFIG: osx_64_hpp_versionmainnumpy1.21python3.10.____cpython
         UPLOAD_PACKAGES: 'True'
-      osx_64_hpp_versionv1numpy1.20python3.7.____cpython:
-        CONFIG: osx_64_hpp_versionv1numpy1.20python3.7.____cpython
+      osx_64_hpp_versionv1numpy1.20python3.8.____73_pypy:
+        CONFIG: osx_64_hpp_versionv1numpy1.20python3.8.____73_pypy
         UPLOAD_PACKAGES: 'True'
       osx_64_hpp_versionv1numpy1.20python3.8.____cpython:
         CONFIG: osx_64_hpp_versionv1numpy1.20python3.8.____cpython
+        UPLOAD_PACKAGES: 'True'
+      osx_64_hpp_versionv1numpy1.20python3.9.____73_pypy:
+        CONFIG: osx_64_hpp_versionv1numpy1.20python3.9.____73_pypy
         UPLOAD_PACKAGES: 'True'
       osx_64_hpp_versionv1numpy1.20python3.9.____cpython:
         CONFIG: osx_64_hpp_versionv1numpy1.20python3.9.____cpython
@@ -50,6 +56,7 @@ jobs:
       osx_arm64_hpp_versionv1numpy1.21python3.10.____cpython:
         CONFIG: osx_arm64_hpp_versionv1numpy1.21python3.10.____cpython
         UPLOAD_PACKAGES: 'True'
+    maxParallel: 14
   timeoutInMinutes: 360
 
   steps:

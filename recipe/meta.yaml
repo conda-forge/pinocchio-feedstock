@@ -8,9 +8,11 @@ package:
 source:
   url: https://github.com/stack-of-tasks/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
   sha256: 4ded587192561d434d4158fdae56dd36b0c3a0db65ae4768df94428161bad522
+  patches:
+    - patches/0001-cmake-fix-handling-of-BUILD_WITH_LIBPYTHON.patch
 
 build:
-  number: 1
+  number: 2
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
 
