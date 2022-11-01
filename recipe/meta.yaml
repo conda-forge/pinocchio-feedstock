@@ -1,5 +1,5 @@
 {% set name = "pinocchio" %}
-{% set version = "2.6.10" %}
+{% set version = "2.6.11" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://github.com/stack-of-tasks/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 4ded587192561d434d4158fdae56dd36b0c3a0db65ae4768df94428161bad522
+  sha256: e91d0ef957c8a0e9b1552f171b4c0e8a5052f0d071d86d461e36503d775552b8
   patches:
     - patches/0001-cmake-fix-handling-of-BUILD_WITH_LIBPYTHON.patch
 
 build:
-  number: 2
+  number: 0
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
 
