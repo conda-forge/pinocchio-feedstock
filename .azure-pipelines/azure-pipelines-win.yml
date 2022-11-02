@@ -23,6 +23,9 @@ jobs:
       win_64_hpp_versionmainnumpy1.21python3.10.____cpython:
         CONFIG: win_64_hpp_versionmainnumpy1.21python3.10.____cpython
         UPLOAD_PACKAGES: 'True'
+      win_64_hpp_versionmainnumpy1.23python3.11.____cpython:
+        CONFIG: win_64_hpp_versionmainnumpy1.23python3.11.____cpython
+        UPLOAD_PACKAGES: 'True'
       win_64_hpp_versionv1numpy1.20python3.8.____73_pypy:
         CONFIG: win_64_hpp_versionv1numpy1.20python3.8.____73_pypy
         UPLOAD_PACKAGES: 'True'
@@ -37,6 +40,9 @@ jobs:
         UPLOAD_PACKAGES: 'True'
       win_64_hpp_versionv1numpy1.21python3.10.____cpython:
         CONFIG: win_64_hpp_versionv1numpy1.21python3.10.____cpython
+        UPLOAD_PACKAGES: 'True'
+      win_64_hpp_versionv1numpy1.23python3.11.____cpython:
+        CONFIG: win_64_hpp_versionv1numpy1.23python3.11.____cpython
         UPLOAD_PACKAGES: 'True'
     maxParallel: 9
   timeoutInMinutes: 360
@@ -63,7 +69,7 @@ jobs:
 
     - script: |
         call activate base
-        mamba.exe install 'python=3.9' conda-build conda pip boa 'conda-forge-ci-setup=3' -c conda-forge --strict-channel-priority --yes
+        mamba.exe install "python=3.9" conda-build conda pip boa conda-forge-ci-setup=3 "py-lief<0.12" -c conda-forge --strict-channel-priority --yes
       displayName: Install conda-build
 
     - script: set PYTHONUNBUFFERED=1
