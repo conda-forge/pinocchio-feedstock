@@ -1,5 +1,5 @@
 {% set name = "pinocchio" %}
-{% set version = "2.6.11" %}
+{% set version = "2.6.12" %}
 
 package:
   name: {{ name|lower }}
@@ -7,26 +7,21 @@ package:
 
 source:
   url: https://github.com/stack-of-tasks/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: e91d0ef957c8a0e9b1552f171b4c0e8a5052f0d071d86d461e36503d775552b8
-  patches:
-    - patches/0001-cmake-fix-handling-of-BUILD_WITH_LIBPYTHON.patch
+  sha256: dc2d4bb32d553bce9ee8febdbd5773e114b5c82af458c86d8c9177a34d6be316
 
 build:
-  number: 1
+  number: 0
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x') }}
 
 requirements:
   build:
     - {{ compiler('cxx') }}  # [not win]
-    - vs2017_win-64  # [win64]
-    - vs2017_win-32  # [win32]
     - cmake
     - clang  # [win]
     - make  # [not win]
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-    - cython                                 # [build_platform != target_platform]
     - numpy                                  # [build_platform != target_platform]
   host:
     - eigen
