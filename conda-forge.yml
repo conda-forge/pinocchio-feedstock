@@ -1,3 +1,5 @@
 conda_forge_output_validation: true
 bot:
   automerge: false
+conda_build:
+  pkg_format: '2'
