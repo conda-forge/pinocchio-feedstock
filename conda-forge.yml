@@ -12,3 +12,5 @@ provider:
   linux_aarch64: default
   linux_ppc64le: default
 test_on_native_only: true
+conda_build:
+  pkg_format: '2'
