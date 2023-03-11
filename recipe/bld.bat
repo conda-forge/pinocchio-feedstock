@@ -1,3 +1,5 @@
+setlocal EnableDelayedExpansion
+
 mkdir build
 cd build
 
@@ -7,7 +9,7 @@ set "CL=/MP"
 
 ::Configure
 cmake ^
-    -G "NMake Makefiles" ^
+    -G Ninja ^
     -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
     -DCMAKE_BUILD_TYPE=Release ^
     -DPYTHON_SITELIB=%SP_DIR% ^

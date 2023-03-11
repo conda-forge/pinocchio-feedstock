@@ -1,11 +1,11 @@
-About pinocchio
-===============
+About pinocchio-feedstock
+=========================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pinocchio-feedstock/blob/main/LICENSE.txt)
 
 Home: http://github.com/stack-of-tasks/pinocchio
 
 Package license: BSD-2-Clause
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pinocchio-feedstock/blob/main/LICENSE.txt)
 
 Summary: A fast and flexible implementation of Rigid Body Dynamics algorithms and their analytical derivatives
 

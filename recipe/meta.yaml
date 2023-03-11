@@ -10,16 +10,17 @@ source:
   sha256: 42ae1e89e69519aebd3eb391fbc6d24103fc5094ba03914a8f47cfcbed556975
 
 build:
-  number: 0
+  number: 1
   run_exports:
-    - {{ pin_subpackage(name, max_pin='x.x') }}
+    - {{ pin_subpackage(name, max_pin='x.x.x') }}
 
 requirements:
   build:
-    - {{ compiler('cxx') }}  # [not win]
+    - {{ compiler('cxx') }}
     - cmake
     - clang  # [win]
     - make  # [not win]
+    - ninja  # [win]
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - numpy                                  # [build_platform != target_platform]
