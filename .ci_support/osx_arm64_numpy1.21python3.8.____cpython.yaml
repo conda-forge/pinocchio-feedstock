@@ -11,11 +11,11 @@ cxx_compiler:
 cxx_compiler_version:
 - '13'
 llvm_openmp:
-- '14'
+- '15'
 macos_machine:
 - arm64-apple-darwin20.0.0
 numpy:
-- '1.20'
+- '1.21'
 pin_run_as_build:
   boost:
     max_pin: x.x.x

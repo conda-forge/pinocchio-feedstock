@@ -4,8 +4,10 @@ channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
+cxx_compiler:
+- vs2019
 numpy:
-- '1.20'
+- '1.21'
 pin_run_as_build:
   boost:
     max_pin: x.x.x
