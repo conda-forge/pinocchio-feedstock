@@ -10,7 +10,7 @@ source:
   sha256: 2fcead7b1b2f08aa47acd28891e4b204f2e9cc14a4e4c9027168b8c58f9aedd2
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x.x') }}
 
@@ -29,7 +29,8 @@ requirements:
     - eigenpy
     - urdfdom
     - hpp-fcl
-    - boost
+    - libboost-devel
+    - libboost-python-devel
     - python
     - llvm-openmp  # [not win]
     - numpy
@@ -38,7 +39,6 @@ requirements:
     - eigenpy
     - urdfdom
     - hpp-fcl
-    - boost
     - python
     - llvm-openmp  # [not win]
     - {{ pin_compatible('numpy') }}
