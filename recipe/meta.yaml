@@ -29,6 +29,7 @@ requirements:
     - eigenpy
     - urdfdom
     - hpp-fcl
+    - libboost-devel
     - libboost-python-devel
     - python
     - llvm-openmp  # [not win]
@@ -38,7 +39,6 @@ requirements:
     - eigenpy
     - urdfdom
     - hpp-fcl
-    - libboost-python-devel
     - python
     - llvm-openmp  # [not win]
     - {{ pin_compatible('numpy') }}
