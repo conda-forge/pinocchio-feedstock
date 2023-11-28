@@ -8,6 +8,8 @@ cxx_compiler:
 - clangxx
 cxx_compiler_version:
 - '13'
+libboost_devel:
+- '1.82'
 libboost_python_devel:
 - '1.82'
 llvm_openmp:
