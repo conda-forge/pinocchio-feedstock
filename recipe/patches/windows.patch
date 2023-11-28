@@ -1,0 +1,61 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index 01a03f00b..68b889866 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+ 
+ ## [Unreleased]
+ 
++### Fixed
++
++- Add missing include `<sys/types.h>` for recent version of Windows compilers ([#2101](https://github.com/stack-of-tasks/pinocchio/pull/2101))
++
+ ## [2.6.21] - 2023-11-27
+ 
+ ### Added
+diff --git a/bindings/python/utils/conversions.cpp b/bindings/python/utils/conversions.cpp
+index 87800d2b8..82cf45527 100644
+--- a/bindings/python/utils/conversions.cpp
++++ b/bindings/python/utils/conversions.cpp
+@@ -3,6 +3,7 @@
+ //
+ 
+ #include <sstream>
++#include <sys/types.h>
+ 
+ #include "pinocchio/bindings/python/fwd.hpp"
+ #include "pinocchio/bindings/python/spatial/se3.hpp"
+Submodule cmake 02719f328..b7a4177f2:
+diff --git a/cmake/cxx-standard.cmake b/cmake/cxx-standard.cmake
+index 6808507..ff3ebfd 100644
+--- a/cmake/cxx-standard.cmake
++++ b/cmake/cxx-standard.cmake
+@@ -147,6 +147,15 @@ macro(CHECK_MINIMAL_CXX_STANDARD STANDARD)
+         STATUS
+           "C++ standard sufficient: Minimal required ${_MINIMAL_CXX_STANDARD}, currently defined: ${_CURRENT_STANDARD}"
+       )
++      # current C++ standard was not set in CMake but we enforce it
++      if(NOT DEFINED CMAKE_CXX_STANDARD AND (ENFORCE_MINIMAL_CXX_STANDARD
++                                             OR MINIMAL_CXX_STANDARD_ENFORCE))
++        message(
++          STATUS
++            "CMAKE_CXX_STANDARD was not set: automatically set to currently defined standard ${_CURRENT_STANDARD}"
++        )
++        set(CMAKE_CXX_STANDARD ${_CURRENT_STANDARD})
++      endif()
+     endif() # requested minimum is higher than the currently selected
+   endif()
+ endmacro()
+diff --git a/cmake/test.cmake b/cmake/test.cmake
+index 09c872f..8a1055d 100644
+--- a/cmake/test.cmake
++++ b/cmake/test.cmake
+@@ -149,7 +149,7 @@ function(COMPUTE_PYTHONPATH result)
+   if(WIN32)
+     # ensure that severals paths stay together as ENV variable PYTHONPATH when
+     # passed to python test via PROPERTIES
+-    string(REPLACE ";" "\;" PYTHONPATH_STR "${PYTHONPATH}")
++    string(REPLACE ";" "\\\;" PYTHONPATH_STR "${PYTHONPATH}")
+   else(WIN32)
+     string(REPLACE ";" "${PATHSEP}" PYTHONPATH_STR "${PYTHONPATH}")
+   endif(WIN32)
