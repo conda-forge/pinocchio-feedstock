@@ -19,7 +19,7 @@ python:
 target_platform:
 - win-64
 urdfdom:
-- '3.1'
+- '4.0'
 zip_keys:
 - - python
   - numpy

@@ -25,7 +25,7 @@ python:
 target_platform:
 - linux-ppc64le
 urdfdom:
-- '3.1'
+- '4.0'
 zip_keys:
 - - python
   - numpy
