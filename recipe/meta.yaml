@@ -1,5 +1,5 @@
 {% set name = "pinocchio" %}
-{% set version = "2.7.0" %}
+{% set version = "2.7.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,13 @@ package:
 
 source:
   url: https://github.com/stack-of-tasks/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: fbc8de46b3296c8bf7d4d9b03392c04809a1bca52930fab243749eeef39db406
+  sha256: fd50b72f9f32c14c8f9e7712d9abe077c154d2072e780faf12cc132cc198815f
   patches:
     # Fix stubgen generation (https://github.com/stack-of-tasks/pinocchio/pull/2166
     - patches/0001-cmake-Add-binding-dependency-to-stubgen.patch
 
 build:
-  number: 2
+  number: 0
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x.x') }}
 
