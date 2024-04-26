@@ -8,9 +8,6 @@ package:
 source:
   url: https://github.com/stack-of-tasks/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
   sha256: fd50b72f9f32c14c8f9e7712d9abe077c154d2072e780faf12cc132cc198815f
-  patches:
-    # Fix stubgen generation (https://github.com/stack-of-tasks/pinocchio/pull/2166
-    - patches/0001-cmake-Add-binding-dependency-to-stubgen.patch
 
 build:
   number: 0
