@@ -35,6 +35,10 @@ requirements:
     - python
     - llvm-openmp  # [not win]
     - numpy
+    - casadi
+    - cppad<=20230000
+    - cppadcodegen # [not win]
+    - mpfr
   run:
     - eigen
     - eigenpy
@@ -43,6 +47,11 @@ requirements:
     - python
     - llvm-openmp  # [not win]
     - {{ pin_compatible('numpy') }}
+    - casadi
+    - cppad<=20230000
+    - cppadcodegen # [not win]
+    - pycppad
+    - mpfr
 test:
   requires:
     - pkg-config
