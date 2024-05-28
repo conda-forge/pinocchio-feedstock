@@ -36,8 +36,8 @@ requirements:
     - llvm-openmp  # [not win]
     - numpy
     - casadi
-    - cppad<=20230000
-    - cppadcodegen # [not win and not aarch64 and not ppc64le]
+    - cppad <=20230000
+    - cppadcodegen  # [not win and not aarch64 and not ppc64le]
     - mpfr
   run:
     - eigen
@@ -48,8 +48,8 @@ requirements:
     - llvm-openmp  # [not win]
     - {{ pin_compatible('numpy') }}
     - casadi
-    - cppad<=20230000
-    - cppadcodegen # [not win and not aarch64 and not ppc64le]
+    - cppad <=20230000
+    - cppadcodegen  # [not win and not aarch64 and not ppc64le]
     - pycppad
     - mpfr
 test:
