@@ -28,7 +28,7 @@ cmake ^
 if errorlevel 1 exit 1
 
 :: Build.
-cmake --build . --config Release
+cmake --build . --config Release -j2
 if errorlevel 1 exit 1
 
 :: Install.
