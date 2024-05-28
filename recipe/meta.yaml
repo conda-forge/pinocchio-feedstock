@@ -48,7 +48,7 @@ test:
     - pkg-config
   commands:
     - pkg-config --modversion {{ name }}
-    - test -f $PREFIX/lib/lib{{ name }}${SHLIB_EXT}  # [not win]
+    - test -f $PREFIX/lib/lib{{ name }}_default${SHLIB_EXT}  # [not win]
   imports:
     - pinocchio
 
