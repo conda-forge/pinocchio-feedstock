@@ -22,6 +22,8 @@ libboost_devel:
 - '1.84'
 libboost_python_devel:
 - '1.84'
+mpfr:
+- '4'
 numpy:
 - '1.26'
 pin_run_as_build:
