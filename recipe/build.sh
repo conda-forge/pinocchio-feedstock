@@ -39,8 +39,7 @@ cmake ${CMAKE_ARGS} .. \
       -DGENERATE_PYTHON_STUBS=$GENERATE_PYTHON_STUBS \
       -DPYTHON_EXECUTABLE=$PYTHON
 
-echo ${CPU_COUNT}
-make -j2
+make
 make install
 
 if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then
