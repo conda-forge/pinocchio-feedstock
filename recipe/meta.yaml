@@ -11,6 +11,8 @@ source:
   patches:
     # Fix PyPy support (https://github.com/stack-of-tasks/pinocchio/pull/2274)
     - patches/0001-cmake-Turn-BUILD_WITH_LIBPYTHON-OFF-when-building-wi.patch
+    # Fix cross build with hpp-fcl (https://github.com/stack-of-tasks/pinocchio/pull/2288)
+    - patches/0002-cmake-Always-suppose-hpp-fcl-Python-binding-are-pres.patch
 
 build:
   number: 0
