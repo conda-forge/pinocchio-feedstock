@@ -42,7 +42,6 @@ requirements:
     - numpy
     - casadi
     - cppad <=20230000
-    - cppadcodegen  # [not win and not aarch64 and not ppc64le]
     - mpfr
   run:
     - eigen
@@ -54,7 +53,6 @@ requirements:
     - {{ pin_compatible('numpy') }}
     - casadi
     - cppad <=20230000
-    - cppadcodegen  # [not win and not aarch64 and not ppc64le]
     - pycppad
     - mpfr
 test:
