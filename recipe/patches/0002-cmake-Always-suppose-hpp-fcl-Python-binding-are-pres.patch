@@ -1,0 +1,105 @@
+From 9467f1a60a843c290c383baa5938a6f7099fbf28 Mon Sep 17 00:00:00 2001
+From: Joris Vaillant <joris.vaillant@inria.fr>
+Date: Tue, 18 Jun 2024 11:31:07 +0200
+Subject: [PATCH 1/2] =?UTF-8?q?cmake:=C2=A0Always=20suppose=20hpp-fcl=20Py?=
+ =?UTF-8?q?thon=20binding=20are=20present=20when=20hpp-fcl=20C++=20library?=
+ =?UTF-8?q?=20is=20found?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Pinocchio Python binding needs hpp-fcl Python binding for
+collision/contact related algorithms.
+
+We allow with the `BUILD_WITH_HPP_FCL_PYTHON_BINDINGS` CMake variable to build
+Pinocchio C++ library with hpp-fcl but to ignore hpp-fcl in the Python
+bindings if the hpp-fcl Python bindings are not installed.
+
+This create the following issues:
+- To compute `BUILD_WITH_HPP_FCL_PYTHON_BINDINGS` we must call the
+  Python interpreter. This create some issue when cross compiling.
+- We never test this case in our CI, so we don't know if this option is
+  working.
+
+This PR remove this option to simplify the build.
+In the case an user build Pinocchio Python binding with hpp-fcl
+C++ library but without hpp-fcl binding, the Python interpreter will
+raise an ImportError.
+---
+ CMakeLists.txt                 | 17 +----------------
+ bindings/python/CMakeLists.txt |  6 +++---
+ unittest/python/CMakeLists.txt |  8 +++-----
+ 3 files changed, 7 insertions(+), 24 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 99d06a1cf..b4b9875a5 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -296,22 +296,7 @@ if(BUILD_WITH_HPP_FCL_SUPPORT)
+   list(APPEND CFLAGS_DEPENDENCIES "-DPINOCCHIO_WITH_HPP_FCL")
+   list(APPEND LIBRARIES_DEPENDENCIES "hpp-fcl")
+   add_project_dependency(hpp-fcl 2.1.2 REQUIRED PKG_CONFIG_REQUIRES "hpp-fcl >= 2.1.2")
+-  # Check whether hpp-fcl python bindings are available.
+-  set(BUILD_WITH_HPP_FCL_PYTHON_BINDINGS FALSE)
+-  if(BUILD_PYTHON_INTERFACE)
+-    execute_process(
+-      COMMAND ${PYTHON_EXECUTABLE} -c "import hppfcl"
+-      RESULT_VARIABLE _hpp_fcl_python_bindings_not_found
+-      OUTPUT_QUIET ERROR_QUIET)
+-    if(_hpp_fcl_python_bindings_not_found EQUAL 0)
+-      set(BUILD_WITH_HPP_FCL_PYTHON_BINDINGS TRUE)
+-      message(STATUS "Found hpp-fcl Python bindings.")
+-    else()
+-      message(STATUS "hpp-fcl Python bindings NOT found.")
+-    endif()
+-    unset(_hpp_fcl_python_bindings_not_found)
+-  endif(BUILD_PYTHON_INTERFACE)
+-endif(BUILD_WITH_HPP_FCL_SUPPORT)
++endif()
+ 
+ if(BUILD_WITH_ACCELERATE_SUPPORT)
+   if(NOT ${Eigen3_VERSION} VERSION_GREATER_EQUAL "3.4.90")
+diff --git a/bindings/python/CMakeLists.txt b/bindings/python/CMakeLists.txt
+index 4a829524f..5e01c9850 100644
+--- a/bindings/python/CMakeLists.txt
++++ b/bindings/python/CMakeLists.txt
+@@ -83,13 +83,13 @@ function(PINOCCHIO_PYTHON_BINDINGS_SPECIFIC_TYPE scalar_name)
+     # console_bridge::setLogLevel function.
+     target_link_libraries(${PYTHON_LIB_NAME} PUBLIC console_bridge::console_bridge)
+   endif()
+-  if(BUILD_WITH_HPP_FCL_PYTHON_BINDINGS)
++  if(BUILD_WITH_HPP_FCL_SUPPORT)
+     target_compile_definitions(${PYTHON_LIB_NAME}
+                                PRIVATE -DPINOCCHIO_PYTHON_INTERFACE_WITH_HPP_FCL_PYTHON_BINDINGS)
+-  endif(BUILD_WITH_HPP_FCL_PYTHON_BINDINGS)
++  endif()
+   if(WIN32)
+     target_link_libraries(${PYTHON_LIB_NAME} PUBLIC ${PYTHON_LIBRARY})
+-  endif(WIN32)
++  endif()
+ 
+   set(${PYWRAP}_INSTALL_DIR ${ABSOLUTE_PYTHON_SITELIB}/${PROJECT_NAME})
+ 
+diff --git a/unittest/python/CMakeLists.txt b/unittest/python/CMakeLists.txt
+index abe439fbe..1751fbc4c 100644
+--- a/unittest/python/CMakeLists.txt
++++ b/unittest/python/CMakeLists.txt
+@@ -45,12 +45,10 @@ set(${PROJECT_NAME}_PYTHON_TESTS
+     bindings_std_vector
+     bindings_std_map)
+ 
+-if(hpp-fcl_FOUND)
++if(BUILD_WITH_HPP_FCL_SUPPORT)
+   set(${PROJECT_NAME}_PYTHON_TESTS ${${PROJECT_NAME}_PYTHON_TESTS} bindings_geometry_object)
+-  if(BUILD_WITH_HPP_FCL_PYTHON_BINDINGS)
+-    set(${PROJECT_NAME}_PYTHON_TESTS ${${PROJECT_NAME}_PYTHON_TESTS} bindings_fcl_transform)
+-  endif(BUILD_WITH_HPP_FCL_PYTHON_BINDINGS)
+-endif(hpp-fcl_FOUND)
++  set(${PROJECT_NAME}_PYTHON_TESTS ${${PROJECT_NAME}_PYTHON_TESTS} bindings_fcl_transform)
++endif()
+ 
+ if(urdfdom_FOUND)
+   set(${PROJECT_NAME}_PYTHON_TESTS ${${PROJECT_NAME}_PYTHON_TESTS} bindings_urdf
+-- 
+2.34.1
+

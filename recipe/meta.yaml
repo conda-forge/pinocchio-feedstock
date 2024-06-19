@@ -1,5 +1,5 @@
 {% set name = "pinocchio" %}
-{% set version = "2.7.1" %}
+{% set version = "3.0.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,12 @@ package:
 
 source:
   url: https://github.com/stack-of-tasks/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: fd50b72f9f32c14c8f9e7712d9abe077c154d2072e780faf12cc132cc198815f
+  sha256: 0e49f3d92e303fe109bc8b329513708a03cdb734a90cb7734821ed2978de8d10
+  patches:
+    # Fix PyPy support (https://github.com/stack-of-tasks/pinocchio/pull/2274)
+    - patches/0001-cmake-Turn-BUILD_WITH_LIBPYTHON-OFF-when-building-wi.patch
+    # Fix cross build with hpp-fcl (https://github.com/stack-of-tasks/pinocchio/pull/2288)
+    - patches/0002-cmake-Always-suppose-hpp-fcl-Python-binding-are-pres.patch
 
 build:
   number: 0
@@ -35,6 +40,7 @@ requirements:
     - python
     - llvm-openmp  # [not win]
     - numpy
+    - casadi
   run:
     - eigen
     - eigenpy
@@ -43,12 +49,13 @@ requirements:
     - python
     - llvm-openmp  # [not win]
     - {{ pin_compatible('numpy') }}
+    - casadi
 test:
   requires:
     - pkg-config
   commands:
     - pkg-config --modversion {{ name }}
-    - test -f $PREFIX/lib/lib{{ name }}${SHLIB_EXT}  # [not win]
+    - test -f $PREFIX/lib/lib{{ name }}_default${SHLIB_EXT}  # [not win]
   imports:
     - pinocchio
 
