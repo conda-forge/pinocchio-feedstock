@@ -31,7 +31,7 @@ requirements:
     - make  # [not win]
     - ninja  # [win]
     - libgomp       # [linux]
-    - llvm-openmp   # [osx or win]
+    - llvm-openmp   # [osx]
   host:
     - eigen
     - eigenpy
