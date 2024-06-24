@@ -30,6 +30,8 @@ requirements:
     - clang  # [win]
     - make  # [not win]
     - ninja  # [win]
+    - libgomp       # [linux]
+    - llvm-openmp   # [osx or win]
   host:
     - eigen
     - eigenpy
@@ -38,7 +40,6 @@ requirements:
     - libboost-devel
     - libboost-python-devel
     - python
-    - llvm-openmp  # [not win]
     - numpy
     - casadi
   run:
@@ -47,7 +48,6 @@ requirements:
     - urdfdom
     - hpp-fcl
     - python
-    - llvm-openmp  # [not win]
     - {{ pin_compatible('numpy') }}
     - casadi
 test:
