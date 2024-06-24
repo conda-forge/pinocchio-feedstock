@@ -15,7 +15,7 @@ source:
     - patches/0002-cmake-Always-suppose-hpp-fcl-Python-binding-are-pres.patch
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x.x') }}
 
@@ -30,6 +30,8 @@ requirements:
     - clang  # [win]
     - make  # [not win]
     - ninja  # [win]
+    - libgomp       # [linux]
+    - llvm-openmp   # [osx]
   host:
     - eigen
     - eigenpy
@@ -38,18 +40,20 @@ requirements:
     - libboost-devel
     - libboost-python-devel
     - python
-    - llvm-openmp  # [not win]
     - numpy
     - casadi
+    - qhull
+    - console_bridge
   run:
     - eigen
     - eigenpy
     - urdfdom
     - hpp-fcl
     - python
-    - llvm-openmp  # [not win]
     - {{ pin_compatible('numpy') }}
     - casadi
+    - qhull
+    - console_bridge
 test:
   requires:
     - pkg-config

@@ -22,8 +22,6 @@ llvm_openmp:
 - '16'
 macos_machine:
 - x86_64-apple-darwin13.4.0
-mpfr:
-- '4'
 numpy:
 - '1.23'
 pin_run_as_build:
