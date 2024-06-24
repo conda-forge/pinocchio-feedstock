@@ -42,6 +42,8 @@ requirements:
     - python
     - numpy
     - casadi
+    - qhull
+    - console_bridge
   run:
     - eigen
     - eigenpy
@@ -50,6 +52,8 @@ requirements:
     - python
     - {{ pin_compatible('numpy') }}
     - casadi
+    - qhull
+    - console_bridge
 test:
   requires:
     - pkg-config
