@@ -10,6 +10,8 @@ channel_sources:
 - conda-forge
 channel_targets:
 - conda-forge main
+console_bridge:
+- '1.0'
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
@@ -30,6 +32,8 @@ pin_run_as_build:
     max_pin: x.x
 python:
 - 3.12.* *_cpython
+qhull:
+- '2020.2'
 target_platform:
 - osx-arm64
 urdfdom:
