@@ -1,5 +1,5 @@
 {% set name = "pinocchio" %}
-{% set version = "3.0.0" %}
+{% set version = "3.1.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,15 +7,10 @@ package:
 
 source:
   url: https://github.com/stack-of-tasks/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 0e49f3d92e303fe109bc8b329513708a03cdb734a90cb7734821ed2978de8d10
-  patches:
-    # Fix PyPy support (https://github.com/stack-of-tasks/pinocchio/pull/2274)
-    - patches/0001-cmake-Turn-BUILD_WITH_LIBPYTHON-OFF-when-building-wi.patch
-    # Fix cross build with hpp-fcl (https://github.com/stack-of-tasks/pinocchio/pull/2288)
-    - patches/0002-cmake-Always-suppose-hpp-fcl-Python-binding-are-pres.patch
+  sha256: e624484077eee3183e20443ab0373205bb832a2597241531705116fa9f07016a
 
 build:
-  number: 1
+  number: 0
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x.x') }}
 
@@ -67,7 +62,7 @@ about:
   home: http://github.com/stack-of-tasks/pinocchio
   license: BSD-2-Clause
   license_family: BSD
-  license_file: COPYING.LESSER
+  license_file: LICENSE
   summary: A fast and flexible implementation of Rigid Body Dynamics algorithms and their analytical derivatives
   dev_url: https://github.com/stack-of-tasks/pinocchio
 
