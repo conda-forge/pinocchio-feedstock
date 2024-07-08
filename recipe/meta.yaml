@@ -62,7 +62,7 @@ about:
   home: http://github.com/stack-of-tasks/pinocchio
   license: BSD-2-Clause
   license_family: BSD
-  license_file: COPYING.LESSER
+  license_file: LICENSE
   summary: A fast and flexible implementation of Rigid Body Dynamics algorithms and their analytical derivatives
   dev_url: https://github.com/stack-of-tasks/pinocchio
 
