@@ -10,7 +10,7 @@ source:
   sha256: e624484077eee3183e20443ab0373205bb832a2597241531705116fa9f07016a
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x.x') }}
 
@@ -38,6 +38,7 @@ requirements:
     - numpy
     - casadi
     - qhull
+    - qhull-static  # [not win]
     - console_bridge
   run:
     - eigen
@@ -48,6 +49,7 @@ requirements:
     - {{ pin_compatible('numpy') }}
     - casadi
     - qhull
+    - qhull-static  # [not win]
     - console_bridge
 test:
   requires:
