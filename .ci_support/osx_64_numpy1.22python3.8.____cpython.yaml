@@ -15,7 +15,7 @@ console_bridge:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '13'
+- '16'
 libboost_devel:
 - '1.84'
 libboost_python_devel:
