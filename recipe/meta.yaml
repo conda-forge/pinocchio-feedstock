@@ -38,6 +38,7 @@ requirements:
     - numpy
     - casadi
     - qhull
+    - qhull-static  # [not win]
     - console_bridge
   run:
     - eigen
@@ -48,6 +49,7 @@ requirements:
     - {{ pin_compatible('numpy') }}
     - casadi
     - qhull
+    - qhull-static  # [not win]
     - console_bridge
 test:
   requires:
