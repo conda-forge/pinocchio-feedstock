@@ -9,9 +9,9 @@ console_bridge:
 cxx_compiler:
 - vs2019
 libboost_devel:
-- '1.84'
+- '1.86'
 libboost_python_devel:
-- '1.84'
+- '1.86'
 numpy:
 - '1.22'
 pin_run_as_build:
