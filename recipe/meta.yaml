@@ -1,5 +1,5 @@
 {% set name = "pinocchio" %}
-{% set version = "3.1.0" %}
+{% set version = "3.2.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/stack-of-tasks/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: e624484077eee3183e20443ab0373205bb832a2597241531705116fa9f07016a
+  sha256: b6a7e6f6f6e3f175dd7010aa998a018f88d712477caa6c41f6ae038310c2fd7d
 
 build:
-  number: 2
+  number: 0
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x.x') }}
 
