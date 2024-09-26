@@ -45,16 +45,9 @@ requirements:
     - console_bridge
     - libsdformat
   run:
-    - eigen
-    - eigenpy
-    - urdfdom
-    - hpp-fcl
     - python
     - {{ pin_compatible('numpy') }}
-    - casadi
-    - qhull
     - qhull-static  # [not win]
-    - console_bridge
 test:
   requires:
     - pkg-config
