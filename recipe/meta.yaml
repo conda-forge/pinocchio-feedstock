@@ -46,6 +46,7 @@ requirements:
     - qhull
     - qhull-static  # [not win]
     - console_bridge
+    - libsdformat
   run:
     - eigen
     - eigenpy
