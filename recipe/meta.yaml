@@ -13,7 +13,7 @@ source:
     - patches/0003-do-not-use-cmake-boost-policy-CMP0167.patch
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x.x') }}
 
@@ -43,17 +43,11 @@ requirements:
     - qhull
     - qhull-static  # [not win]
     - console_bridge
+    - libsdformat
   run:
-    - eigen
-    - eigenpy
-    - urdfdom
-    - hpp-fcl
     - python
     - {{ pin_compatible('numpy') }}
-    - casadi
-    - qhull
     - qhull-static  # [not win]
-    - console_bridge
 test:
   requires:
     - pkg-config
