@@ -7,7 +7,8 @@ set "CC=clang-cl.exe"
 set "CXX=clang-cl.exe"
 set "CL=/MP"
 
-::Configure
+:: Configure
+:: Turn OpenMP OFF because of https://github.com/stack-of-tasks/pinocchio/issues/2440
 cmake ^
     -G Ninja ^
     -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
@@ -21,7 +22,7 @@ cmake ^
     -DBUILD_WITH_AUTODIFF_SUPPORT=OFF ^
     -DBUILD_WITH_CODEGEN_SUPPORT=OFF ^
     -DBUILD_WITH_EXTRA_SUPPORT=ON ^
-    -DBUILD_WITH_OPENMP_SUPPORT=ON ^
+    -DBUILD_WITH_OPENMP_SUPPORT=OFF ^
     -DBUILD_PYTHON_BINDINGS_WITH_BOOST_MPFR_SUPPORT=OFF ^
     -DBUILD_TESTING=OFF ^
     %SRC_DIR%
