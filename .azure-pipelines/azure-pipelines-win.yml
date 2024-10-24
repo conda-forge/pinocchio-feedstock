@@ -20,6 +20,10 @@ jobs:
         CONFIG: win_64_python3.12.____cpython
         UPLOAD_PACKAGES: 'True'
         SHORT_CONFIG: win_64_python3.12.____cpython
+      win_64_python3.13.____cp313:
+        CONFIG: win_64_python3.13.____cp313
+        UPLOAD_PACKAGES: 'True'
+        SHORT_CONFIG: win_64_python3.13.____cp313
       win_64_python3.9.____cpython:
         CONFIG: win_64_python3.9.____cpython
         UPLOAD_PACKAGES: 'True'
