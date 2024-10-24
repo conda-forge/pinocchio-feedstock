@@ -21,17 +21,17 @@ libboost_devel:
 libboost_python_devel:
 - '1.86'
 numpy:
-- '1.22'
+- '2.0'
 pin_run_as_build:
   python:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.9.* *_cpython
+- 3.11.* *_cpython
 qhull:
 - '2020.2'
 target_platform:
-- linux-ppc64le
+- linux-64
 urdfdom:
 - '4.0'
 zip_keys:

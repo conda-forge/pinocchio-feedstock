@@ -1,9 +1,5 @@
 c_stdlib:
-- sysroot
-c_stdlib_version:
-- '2.17'
-cdt_name:
-- cos7
+- vs
 channel_sources:
 - conda-forge
 channel_targets:
@@ -11,31 +7,25 @@ channel_targets:
 console_bridge:
 - '1.0'
 cxx_compiler:
-- gxx
-cxx_compiler_version:
-- '13'
-docker_image:
-- quay.io/condaforge/linux-anvil-cos7-x86_64
+- vs2019
 libboost_devel:
 - '1.86'
 libboost_python_devel:
 - '1.86'
 numpy:
-- '1.22'
+- '2.0'
 pin_run_as_build:
   python:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.8.* *_cpython
+- 3.10.* *_cpython
 qhull:
 - '2020.2'
 target_platform:
-- linux-ppc64le
+- win-64
 urdfdom:
 - '4.0'
 zip_keys:
-- - c_stdlib_version
-  - cdt_name
 - - python
   - numpy

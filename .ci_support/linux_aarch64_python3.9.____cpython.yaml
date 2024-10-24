@@ -25,13 +25,13 @@ libboost_devel:
 libboost_python_devel:
 - '1.86'
 numpy:
-- '1.23'
+- '2.0'
 pin_run_as_build:
   python:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.11.* *_cpython
+- 3.9.* *_cpython
 qhull:
 - '2020.2'
 target_platform:

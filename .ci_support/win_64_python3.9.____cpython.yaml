@@ -13,7 +13,7 @@ libboost_devel:
 libboost_python_devel:
 - '1.86'
 numpy:
-- '1.22'
+- '2.0'
 pin_run_as_build:
   python:
     min_pin: x.x
