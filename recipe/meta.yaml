@@ -8,9 +8,6 @@ package:
 source:
   url: https://github.com/stack-of-tasks/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
   sha256: a86ea06a7b4447d00cc46ed541a105f686957400eebb51b25aa41a93c08d855c
-  patches:
-  # circumvent boost problem on windows with clang-cl
-    - patches/0003-do-not-use-cmake-boost-policy-CMP0167.patch
 
 build:
   number: 0
