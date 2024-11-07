@@ -10,7 +10,7 @@ source:
   sha256: a86ea06a7b4447d00cc46ed541a105f686957400eebb51b25aa41a93c08d855c
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x.x') }}
 
@@ -46,16 +46,12 @@ requirements:
     - qhull
     - qhull-static  # [not win]
     - console_bridge
+    - libsdformat14
   run:
-    - eigen
-    - eigenpy
-    - urdfdom
-    - hpp-fcl
+    - libboost-devel
+    - libboost-python-devel
     - python
-    - casadi
-    - qhull
     - qhull-static  # [not win]
-    - console_bridge
     - numpy >=2.1                    # [win and py>=310]
     - {{ pin_compatible('numpy') }}  # [win and py<310]
 test:
