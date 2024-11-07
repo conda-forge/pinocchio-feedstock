@@ -46,7 +46,7 @@ requirements:
     - qhull
     - qhull-static  # [not win]
     - console_bridge
-    - libsdformat
+    - libsdformat14
   run:
     - libboost-devel
     - libboost-python-devel
