@@ -1,5 +1,5 @@
 {% set name = "pinocchio" %}
-{% set version = "3.3.1" %}
+{% set version = "3.4.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,10 @@ package:
 
 source:
   url: https://github.com/stack-of-tasks/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 83f7af674d65ec1a03bf46f0230a227ba0cd696d46047a82fe87a93e710837e8
-  patches:
-    # https://github.com/stack-of-tasks/pinocchio/pull/2541
-    - patches/0001-core-Fix-aba-explicit-template-instantiation.patch
+  sha256: bf899d59b69b7da4ae56ab038aaf46b11561b0ed94a460b31fc04168a4a847c4
 
 build:
-  number: 1
+  number: 0
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x.x') }}
 
