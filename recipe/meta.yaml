@@ -8,9 +8,6 @@ package:
 source:
   url: https://github.com/stack-of-tasks/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
   sha256: bf899d59b69b7da4ae56ab038aaf46b11561b0ed94a460b31fc04168a4a847c4
-  patches:
-    # https://github.com/stack-of-tasks/pinocchio/pull/2541
-    - patches/0001-core-Fix-aba-explicit-template-instantiation.patch
 
 build:
   number: 0
