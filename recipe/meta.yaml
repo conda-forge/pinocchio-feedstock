@@ -73,6 +73,7 @@ about:
 
 extra:
   recipe-maintainers:
+    - nim65s
     - fabinsch
     - jorisv
     - jcarpent
