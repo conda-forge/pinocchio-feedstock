@@ -370,6 +370,7 @@ Feedstock Maintainers
 * [@fabinsch](https://github.com/fabinsch/)
 * [@jcarpent](https://github.com/jcarpent/)
 * [@jorisv](https://github.com/jorisv/)
+* [@nim65s](https://github.com/nim65s/)
 * [@wolfv](https://github.com/wolfv/)
 * [@ymontmarin](https://github.com/ymontmarin/)
 
