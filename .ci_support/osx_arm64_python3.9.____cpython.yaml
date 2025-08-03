@@ -1,11 +1,11 @@
 MACOSX_DEPLOYMENT_TARGET:
-- '10.13'
+- '11.0'
 MACOSX_SDK_VERSION:
-- '10.13'
+- '11.0'
 c_stdlib:
 - macosx_deployment_target
 c_stdlib_version:
-- '10.13'
+- '11.0'
 channel_sources:
 - conda-forge
 channel_targets:
@@ -15,29 +15,26 @@ console_bridge:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '18'
+- '19'
 libboost_devel:
-- '1.86'
+- '1.88'
 libboost_python_devel:
-- '1.86'
+- '1.88'
 llvm_openmp:
-- '18'
+- '19'
 macos_machine:
-- x86_64-apple-darwin13.4.0
+- arm64-apple-darwin20.0.0
 numpy:
-- '2.0'
+- '2'
 pin_run_as_build:
   python:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.11.* *_cpython
+- 3.9.* *_cpython
 qhull:
 - '2020.2'
 target_platform:
-- osx-64
+- osx-arm64
 urdfdom:
 - '4.0'
-zip_keys:
-- - python
-  - numpy

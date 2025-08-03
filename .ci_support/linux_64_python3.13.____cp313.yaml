@@ -13,27 +13,24 @@ console_bridge:
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '13'
+- '14'
 docker_image:
 - quay.io/condaforge/linux-anvil-x86_64:alma9
 libboost_devel:
-- '1.86'
+- '1.88'
 libboost_python_devel:
-- '1.86'
+- '1.88'
 numpy:
-- '2.0'
+- '2'
 pin_run_as_build:
   python:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.10.* *_cpython
+- 3.13.* *_cp313
 qhull:
 - '2020.2'
 target_platform:
-- linux-aarch64
+- linux-64
 urdfdom:
 - '4.0'
-zip_keys:
-- - python
-  - numpy

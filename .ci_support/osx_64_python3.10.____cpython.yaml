@@ -15,29 +15,26 @@ console_bridge:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '18'
+- '19'
 libboost_devel:
-- '1.86'
+- '1.88'
 libboost_python_devel:
-- '1.86'
+- '1.88'
 llvm_openmp:
-- '18'
+- '19'
 macos_machine:
 - x86_64-apple-darwin13.4.0
 numpy:
-- '2.0'
+- '2'
 pin_run_as_build:
   python:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.12.* *_cpython
+- 3.10.* *_cpython
 qhull:
 - '2020.2'
 target_platform:
 - osx-64
 urdfdom:
 - '4.0'
-zip_keys:
-- - python
-  - numpy
