@@ -49,7 +49,8 @@ outputs:
           - pkg-config
         commands:
           - pkg-config --modversion {{ name }}
-          - test -f $PREFIX/lib/lib{{ name }}_default${SHLIB_EXT}  # [not win]
+          - test -f $PREFIX/lib/lib{{ name }}_default${SHLIB_EXT}  # [unix]
+          - if not exist %PREFIX%\Library\bin\{{ name }}_default.dll exit 1  # [win]
   - name: {{ pythonname }}
     script: build_pinocchio_python.sh  # [not win]
     script: build_pinocchio_python.bat  # [win]
@@ -103,6 +104,7 @@ outputs:
       commands:
         - pkg-config --modversion {{ name }}
         - test -f $PREFIX/lib/lib{{ name }}_default${SHLIB_EXT}  # [unix]
+        - if not exist %PREFIX%\Library\bin\{{ name }}_default.dll exit 1  # [win]
 
 about:
   home: http://github.com/stack-of-tasks/pinocchio
