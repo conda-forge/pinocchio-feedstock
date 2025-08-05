@@ -41,5 +41,5 @@ cmake ${CMAKE_ARGS} .. \
       -DGENERATE_PYTHON_STUBS=$GENERATE_PYTHON_STUBS \
       -DPYTHON_EXECUTABLE=$PYTHON
 
-ninja -j16
+ninja -j$CPU_COUNT
 ninja install

@@ -16,7 +16,7 @@ cmake ${CMAKE_ARGS} .. \
       -DBUILD_WITH_SDF_SUPPORT=ON \
       -DBUILD_TESTING=OFF
 
-ninja -j16
+ninja -j$CPU_COUNT
 ninja install
 
 if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then

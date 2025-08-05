@@ -32,7 +32,7 @@ cmake ^
 if errorlevel 1 exit 1
 
 :: Build.
-ninja -j2
+ninja -j%CPU_COUNT%
 if errorlevel 1 exit 1
 
 :: Install.
