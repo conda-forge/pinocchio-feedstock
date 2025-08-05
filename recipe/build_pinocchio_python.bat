@@ -1,11 +1,12 @@
-setlocal EnableDelayedExpansion
+REM It's important to remove build to avoid uninstalling
+REM libcoal file. This create some strange issues with conda-forge.
 
+rm -rf build
 mkdir build
 cd build
 
 set "CC=clang-cl.exe"
 set "CXX=clang-cl.exe"
-set "CL=/MP"
 
 :: Configure
 :: Turn OpenMP OFF because of https://github.com/stack-of-tasks/pinocchio/issues/2440
@@ -16,6 +17,7 @@ cmake ^
     -DPYTHON_SITELIB=%SP_DIR% ^
     -DPYTHON_EXECUTABLE=%PYTHON% ^
     -DBUILD_PYTHON_INTERFACE=ON ^
+    -DBUILD_STANDALONE_PYTHON_INTERFACE=ON ^
     -DGENERATE_PYTHON_STUBS=ON ^
     -DBUILD_WITH_COLLISION_SUPPORT=ON ^
     -DBUILD_WITH_CASADI_SUPPORT=ON ^
@@ -30,9 +32,10 @@ cmake ^
 if errorlevel 1 exit 1
 
 :: Build.
-cmake --build . --config Release -j2
+ninja -j2
 if errorlevel 1 exit 1
 
 :: Install.
-cmake --build . --config Release --target install
+ninja install
 if errorlevel 1 exit 1
+

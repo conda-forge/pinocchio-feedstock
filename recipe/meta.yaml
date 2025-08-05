@@ -1,8 +1,10 @@
 {% set name = "pinocchio" %}
+{% set cppname = "lib" + name %}
+{% set pythonname = name + "-python" %}
 {% set version = "3.8.0" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name|lower }}-split
   version: {{ version }}
 
 source:
@@ -10,58 +12,97 @@ source:
   sha256: aa4664d95a54af7197354a80f5ad324cb291b00593886b78dd868b1fd13636ca
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x.x') }}
 
-requirements:
-  build:
-    - python                                 # [build_platform != target_platform]
-    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-    - numpy                                  # [build_platform != target_platform]
-    - {{ compiler('cxx') }}
-    - {{ stdlib("c") }}
-    - cmake
-    - clang  # [win]
-    - make  # [not win]
-    - ninja  # [win]
-    - libgomp       # [linux]
-    - llvm-openmp   # [osx]
-  host:
-    - eigen
-    - eigenpy
-    - urdfdom
-    - hpp-fcl
-    - libboost-devel
-    - libboost-python-devel
-    - python
-    # On Windows, Numpy 2.0 don't allow to export the PY_ARRAY_UNIQUE_SYMBOL.
-    # This has been fixed in Numpy 2.1.
-    - numpy >=2.1      # [win and py>=310]
-    # Unfortunatly, Numpy 2.1 is not distributed with Python 3.9.
-    # We are forced to use Numpy 1 in this case.
-    - numpy >=1.19,<2  # [win and py<310]
-    - numpy            # [not win]
-    - casadi
-    - qhull
-    - qhull-static  # [not win]
-    - console_bridge
-    - libsdformat14
-  run:
-    - libboost-devel
-    - libboost-python-devel
-    - python
-    - qhull-static  # [not win]
-    - numpy >=2.1                    # [win and py>=310]
-    - {{ pin_compatible('numpy') }}  # [win and py<310]
-test:
-  requires:
-    - pkg-config
-  commands:
-    - pkg-config --modversion {{ name }}
-    - test -f $PREFIX/lib/lib{{ name }}_default${SHLIB_EXT}  # [not win]
-  imports:
-    - pinocchio
+outputs:
+  - name: {{ cppname }}
+    build:
+      run_exports:
+        - {{ pin_subpackage(cppname, max_pin='x.x.x') }}
+    script: build_pinocchio_cpp.sh  # [not win]
+    script: build_pinocchio_cpp.bat  # [win]
+    requirements:
+      build:
+        - {{ compiler('cxx') }}
+        - {{ stdlib("c") }}
+        - cmake
+        - ninja
+        - libgomp       # [linux]
+        - llvm-openmp   # [osx]
+      host:
+        - eigen
+        - urdfdom
+        - hpp-fcl
+        - libboost-devel
+        - casadi
+        - qhull
+        - qhull-static  # [not win]
+        - console_bridge
+        - libsdformat14
+      run:
+        - libboost-devel
+        - qhull-static  # [not win]
+      test:
+        requires:
+          - pkg-config
+        commands:
+          - pkg-config --modversion {{ name }}
+          - test -f $PREFIX/lib/lib{{ name }}_default${SHLIB_EXT}  # [not win]
+  - name: {{ pythonname }}
+    script: build_pinocchio_python.sh  # [not win]
+    script: build_pinocchio_python.bat  # [win]
+    requirements:
+      build:
+        - python                                 # [build_platform != target_platform]
+        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+        - numpy                                  # [build_platform != target_platform]
+        - {{ compiler('cxx') }}
+        - {{ stdlib("c") }}
+        - clang  # [win]
+        - cmake
+        - ninja
+      host:
+        - eigen
+        - eigenpy
+        - hpp-fcl
+        - libboost-devel
+        - libboost-python-devel
+        - python
+        # On Windows, Numpy 2.0 don't allow to export the PY_ARRAY_UNIQUE_SYMBOL.
+        # This has been fixed in Numpy 2.1.
+        - numpy >=2.1      # [win and py>=310]
+        # Unfortunatly, Numpy 2.1 is not distributed with Python 3.9.
+        # We are forced to use Numpy 1 in this case.
+        - numpy >=1.19,<2  # [win and py<310]
+        - numpy            # [not win]
+        - casadi
+        - {{ pin_subpackage(cppname, exact=true) }}
+      run:
+        - python
+        - numpy >=2.1      # [win and py>=310]
+        - {{ pin_compatible('numpy') }}  # [win and py<310]
+        - {{ pin_subpackage(cppname, exact=true) }}
+    test:
+      imports:
+        - pinocchio
+  - name: {{ name }}
+    requirements:
+      host:
+        # Explicitely add a python requirement so that the hash changes between python version
+        - python
+      run:
+        - {{ pin_subpackage(cppname, exact=true) }}
+        - {{ pin_subpackage(pythonname, exact=true) }}
+    test:
+      requires:
+        - pkg-config
+      imports:
+        - pinocchio
+      commands:
+        - pkg-config --modversion {{ name }}
+        - test -f $PREFIX/lib/lib{{ name }}_default${SHLIB_EXT}  # [unix]
 
 about:
   home: http://github.com/stack-of-tasks/pinocchio
@@ -72,6 +113,7 @@ about:
   dev_url: https://github.com/stack-of-tasks/pinocchio
 
 extra:
+  feedstock-name: pinocchio
   recipe-maintainers:
     - nim65s
     - fabinsch
