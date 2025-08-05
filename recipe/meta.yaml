@@ -89,6 +89,9 @@ outputs:
       imports:
         - pinocchio
   - name: {{ name }}
+    build:
+      run_exports:
+        - {{ pin_subpackage(cppname, max_pin='x.x.x') }}
     requirements:
       host:
         # Explicitely add a python requirement so that the hash changes between python version
