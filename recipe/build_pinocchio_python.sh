@@ -1,5 +1,8 @@
-#!/bin/sh
+#! /bin/sh
 
+# It's important to remove build to avoid uninstalling
+# libpinocchio file. This create some strange issues with conda-forge.
+rm -rf build
 mkdir build
 cd build
 
@@ -21,7 +24,10 @@ else
 fi
 
 cmake ${CMAKE_ARGS} .. \
+      -GNinja \
       -DCMAKE_BUILD_TYPE=Release \
+      -DBUILD_PYTHON_INTERFACE=ON \
+      -DBUILD_STANDALONE_PYTHON_INTERFACE=ON \
       -DBUILD_WITH_COLLISION_SUPPORT=ON \
       -DBUILD_WITH_CASADI_SUPPORT=ON \
       -DBUILD_WITH_AUTODIFF_SUPPORT=OFF \
@@ -35,12 +41,5 @@ cmake ${CMAKE_ARGS} .. \
       -DGENERATE_PYTHON_STUBS=$GENERATE_PYTHON_STUBS \
       -DPYTHON_EXECUTABLE=$PYTHON
 
-make
-make install
-
-if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then
-  echo $BUILD_PREFIX
-  echo $PREFIX
-  sed -i.back 's|'"$BUILD_PREFIX"'|'"$PREFIX"'|g' $PREFIX/lib/cmake/pinocchio/pinocchioTargets.cmake
-  rm $PREFIX/lib/cmake/pinocchio/pinocchioTargets.cmake.back
-fi
+ninja -j1
+ninja install
