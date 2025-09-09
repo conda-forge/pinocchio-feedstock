@@ -7,7 +7,7 @@ c_stdlib:
 c_stdlib_version:
 - '11.0'
 channel_sources:
-- conda-forge
+- conda-forge,conda-forge/label/python_rc
 channel_targets:
 - conda-forge main
 console_bridge:
@@ -31,10 +31,13 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.9.* *_cpython
+- 3.14.* *_cp314
 qhull:
 - '2020.2'
 target_platform:
 - osx-arm64
 urdfdom:
 - '4.0'
+zip_keys:
+- - python
+  - channel_sources

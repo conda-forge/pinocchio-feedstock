@@ -38,3 +38,6 @@ target_platform:
 - osx-64
 urdfdom:
 - '4.0'
+zip_keys:
+- - python
+  - channel_sources

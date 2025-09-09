@@ -34,3 +34,6 @@ target_platform:
 - linux-64
 urdfdom:
 - '4.0'
+zip_keys:
+- - python
+  - channel_sources
