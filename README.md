@@ -251,7 +251,9 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libpinocchio-green.svg)](https://anaconda.org/conda-forge/libpinocchio) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libpinocchio.svg)](https://anaconda.org/conda-forge/libpinocchio) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libpinocchio.svg)](https://anaconda.org/conda-forge/libpinocchio) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libpinocchio.svg)](https://anaconda.org/conda-forge/libpinocchio) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-pinocchio-green.svg)](https://anaconda.org/conda-forge/pinocchio) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pinocchio.svg)](https://anaconda.org/conda-forge/pinocchio) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pinocchio.svg)](https://anaconda.org/conda-forge/pinocchio) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pinocchio.svg)](https://anaconda.org/conda-forge/pinocchio) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-pinocchio--python-green.svg)](https://anaconda.org/conda-forge/pinocchio-python) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/pinocchio-python.svg)](https://anaconda.org/conda-forge/pinocchio-python) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/pinocchio-python.svg)](https://anaconda.org/conda-forge/pinocchio-python) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/pinocchio-python.svg)](https://anaconda.org/conda-forge/pinocchio-python) |
 
 Installing pinocchio
 ====================
@@ -263,41 +265,41 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `pinocchio` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `libpinocchio, pinocchio, pinocchio-python` can be installed with `conda`:
 
 ```
-conda install pinocchio
-```
-
-or with `mamba`:
-
-```
-mamba install pinocchio
-```
-
-It is possible to list all of the versions of `pinocchio` available on your platform with `conda`:
-
-```
-conda search pinocchio --channel conda-forge
+conda install libpinocchio pinocchio pinocchio-python
 ```
 
 or with `mamba`:
 
 ```
-mamba search pinocchio --channel conda-forge
+mamba install libpinocchio pinocchio pinocchio-python
+```
+
+It is possible to list all of the versions of `libpinocchio` available on your platform with `conda`:
+
+```
+conda search libpinocchio --channel conda-forge
+```
+
+or with `mamba`:
+
+```
+mamba search libpinocchio --channel conda-forge
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search pinocchio --channel conda-forge
+mamba repoquery search libpinocchio --channel conda-forge
 
-# List packages depending on `pinocchio`:
-mamba repoquery whoneeds pinocchio --channel conda-forge
+# List packages depending on `libpinocchio`:
+mamba repoquery whoneeds libpinocchio --channel conda-forge
 
-# List dependencies of `pinocchio`:
-mamba repoquery depends pinocchio --channel conda-forge
+# List dependencies of `libpinocchio`:
+mamba repoquery depends libpinocchio --channel conda-forge
 ```
 
 
