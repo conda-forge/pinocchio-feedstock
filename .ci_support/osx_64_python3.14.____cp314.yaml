@@ -7,7 +7,7 @@ c_stdlib:
 c_stdlib_version:
 - '10.13'
 channel_sources:
-- conda-forge,conda-forge/label/python_rc
+- conda-forge
 channel_targets:
 - conda-forge main
 console_bridge:
@@ -38,6 +38,3 @@ target_platform:
 - osx-64
 urdfdom:
 - '4.0'
-zip_keys:
-- - python
-  - channel_sources
