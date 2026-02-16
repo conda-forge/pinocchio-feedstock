@@ -31,4 +31,4 @@ qhull:
 target_platform:
 - linux-64
 urdfdom:
-- '4.0'
+- '5.1'

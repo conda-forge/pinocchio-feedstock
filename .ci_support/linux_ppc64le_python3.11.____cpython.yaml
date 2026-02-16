@@ -31,4 +31,4 @@ qhull:
 target_platform:
 - linux-ppc64le
 urdfdom:
-- '4.0'
+- '5.1'
