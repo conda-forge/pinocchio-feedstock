@@ -4,7 +4,7 @@ context:
   name: pinocchio
   cppname: libpinocchio
   pythonname: pinocchio-python
-  version: "3.9.0"
+  version: 3.9.0
 
 recipe:
   name: ${{ name|lower }}-split
@@ -59,11 +59,9 @@ outputs:
           include:
             - pinocchio/fwd.hpp
             - pinocchio/config.hpp
-          files:
-            exists:
-              - if: not win
-                then: lib/lib${{ name }}_default${SHLIB_EXT}
-                else: Library/bin/${{ name }}_default.dll
+          lib:
+            - ${{ name }}_default*
+            - ${{ name }}_parsers*
       - script:
           - pkg-config --modversion ${{ name }}
         requirements:
