@@ -22,7 +22,7 @@ outputs:
       name: ${{ cppname }}
     build:
       script:
-        - if win:
+        - if: win
           then: build_pinocchio_cpp.bat
           else: build_pinocchio_cpp.sh
     requirements:
@@ -73,7 +73,7 @@ outputs:
       name: ${{ pythonname }}
     build:
       script:
-        - if win:
+        - if: win
           then: build_pinocchio_python.bat
           else: build_pinocchio_python.sh
     requirements:
