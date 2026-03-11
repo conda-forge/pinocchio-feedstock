@@ -96,14 +96,9 @@ outputs:
         - python
         # On Windows, Numpy 2.0 don't allow to export the PY_ARRAY_UNIQUE_SYMBOL.
         # This has been fixed in Numpy 2.1.
-        - if: win and match(python, ">=3.10")
+        - if: win
           then: numpy >=2.1
-        # Unfortunatly, Numpy 2.1 is not distributed with Python 3.9.
-        # We are forced to use Numpy 1 in this case.
-        - if: win and match(python, "<3.10")
-          then: numpy >=1.19,<2
-        - if: not win
-          then: numpy
+          else: numpy
         - casadi
         - ${{ pin_subpackage(cppname, exact=true) }}
         - eigen-abi-devel
