@@ -43,3 +43,4 @@ cmake ${CMAKE_ARGS} .. \
 
 ninja -j1
 ninja install
+"$PYTHON" "$RECIPE_DIR/install_pin_dist_info.py" || exit 1

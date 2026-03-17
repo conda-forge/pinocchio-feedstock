@@ -39,3 +39,5 @@ if errorlevel 1 exit 1
 ninja install
 if errorlevel 1 exit 1
 
+"%PYTHON%" "%RECIPE_DIR%\install_pin_dist_info.py"
+if errorlevel 1 exit 1
