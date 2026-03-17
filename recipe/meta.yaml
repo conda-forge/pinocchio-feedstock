@@ -88,8 +88,13 @@ outputs:
         - {{ pin_compatible('numpy') }}  # [win and py<310]
         - {{ pin_subpackage(cppname, exact=true) }}
     test:
+      requires:
+        - pip
       imports:
         - pinocchio
+      commands:
+        - python -c "import importlib.metadata as metadata; assert metadata.version('pin') == '{{ version }}'"
+        - python -m pip show pin
   - name: {{ name }}
     build:
       run_exports:
