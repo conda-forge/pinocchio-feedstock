@@ -104,10 +104,8 @@ outputs:
         - eigen-abi-devel
       run:
         - python
-        - if: win and match(python, ">=3.10")
+        - if: win
           then: numpy >=2.1
-        - if: win and match(python, "<3.10")
-          then: ${{ pin_compatible('numpy') }}
         - ${{ pin_subpackage(cppname, exact=true) }}
     tests:
       - python:
