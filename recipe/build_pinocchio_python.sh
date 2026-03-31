@@ -1,5 +1,7 @@
 #! /bin/sh
 
+set -e
+
 # It's important to remove build to avoid uninstalling
 # libpinocchio file. This create some strange issues with conda-forge.
 rm -rf build
@@ -43,3 +45,4 @@ cmake ${CMAKE_ARGS} .. \
 
 ninja -j1
 ninja install
+"$PYTHON" "$RECIPE_DIR/install_pin_dist_info.py"

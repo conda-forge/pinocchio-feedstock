@@ -8,6 +8,8 @@ console_bridge:
 - '1.0'
 cxx_compiler:
 - vs2022
+eigen_abi_devel:
+- 3.4.0
 libboost_devel:
 - '1.88'
 libboost_python_devel:
