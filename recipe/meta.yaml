@@ -47,9 +47,11 @@ outputs:
         - qhull-static  # [not win]
       test:
         requires:
-          - pkg-config
+          - cmake-package-check
+          - {{ compiler('c') }}
+          - {{ compiler('cxx') }}
         commands:
-          - pkg-config --modversion {{ name }}
+          - cmake-package-check pinocchio
           - test -f $PREFIX/lib/lib{{ name }}_default${SHLIB_EXT}  # [unix]
           - if not exist %PREFIX%\Library\bin\{{ name }}_default.dll exit 1  # [win]
   - name: {{ pythonname }}
@@ -108,11 +110,13 @@ outputs:
         - {{ pin_subpackage(pythonname, exact=true) }}
     test:
       requires:
-        - pkg-config
+        - cmake-package-check
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
       imports:
         - pinocchio
       commands:
-        - pkg-config --modversion {{ name }}
+        - cmake-package-check pinocchio
         - test -f $PREFIX/lib/lib{{ name }}_default${SHLIB_EXT}  # [unix]
         - if not exist %PREFIX%\Library\bin\{{ name }}_default.dll exit 1  # [win]
 
