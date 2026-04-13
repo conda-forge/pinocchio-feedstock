@@ -127,6 +127,7 @@ about:
 extra:
   feedstock-name: pinocchio
   recipe-maintainers:
+    - ManifoldFR
     - nim65s
     - fabinsch
     - jorisv
