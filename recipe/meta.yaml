@@ -1,7 +1,7 @@
 {% set name = "pinocchio" %}
 {% set cppname = "lib" + name %}
 {% set pythonname = name + "-python" %}
-{% set version = "3.9.0" %}
+{% set version = "4.0.0" %}
 
 package:
   name: {{ name|lower }}-split
@@ -9,10 +9,10 @@ package:
 
 source:
   url: https://github.com/stack-of-tasks/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 60553630d83de492bc0cf1126add2acc591c87f1bc8ea7f70693e7563fc103a3
+  sha256: 0cfa23e2874eb9978dd7d952f3d8df855adb14e166b1a31860ac5c28c6348fb4
 
 build:
-  number: 3
+  number: 0
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x.x') }}
 
