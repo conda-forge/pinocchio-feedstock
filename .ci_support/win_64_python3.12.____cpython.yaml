@@ -1,5 +1,7 @@
 c_stdlib:
 - vs
+casadi:
+- '3.7'
 channel_sources:
 - conda-forge
 channel_targets:
