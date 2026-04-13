@@ -34,7 +34,7 @@ outputs:
       host:
         - eigen
         - urdfdom
-        - hpp-fcl
+        - coal
         - libboost-devel
         - casadi
         - qhull
