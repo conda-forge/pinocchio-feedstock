@@ -40,7 +40,8 @@ outputs:
         - qhull
         - qhull-static  # [not win]
         - console_bridge
-        - libsdformat14
+        - libsdformat
+        - libgz-math
         - eigen-abi-devel
       run:
         - libboost-devel
