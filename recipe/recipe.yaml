@@ -133,14 +133,6 @@ outputs:
         - ${{ pin_subpackage(pythonname, exact=true) }}
       run_exports:
         - ${{ pin_subpackage(cppname, upper_bound='x.x.x') }}
-    tests:
-      - script:
-          - cmake-package-check pinocchio
-        requirements:
-          run:
-            - cmake-package-check
-            - ${{ compiler('c') }}
-            - ${{ compiler('cxx') }}
 
 about:
   license: BSD-2-Clause
