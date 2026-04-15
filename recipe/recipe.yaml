@@ -38,7 +38,7 @@ outputs:
       host:
         - eigen
         - urdfdom
-        - coal
+        - libcoal
         - libboost-devel
         - casadi
         - qhull
@@ -50,6 +50,7 @@ outputs:
         - eigen-abi-devel
       run:
         - libboost-devel
+        - libcoal
         - if: not win
           then: qhull-static
       run_exports:
