@@ -108,6 +108,7 @@ outputs:
         - eigen-abi-devel
       run:
         - python
+        - coal-python
         - if: win
           then: numpy >=2.1
         - ${{ pin_subpackage(cppname, exact=true) }}
