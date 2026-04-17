@@ -119,11 +119,14 @@ outputs:
       - script:
           interpreter: python
           content: |
-            python -c "import importlib.metadata as metadata; assert metadata.version('pin') == '{{ version }}'"
-            python -m pip show pin
+            import importlib.metadata as metadata
+            assert metadata.version('pin') == '${{ version }}'
+      - script:
+          - python -m pip show pin
         requirements:
           run:
             - pip
+            - python
   - package:
       name: ${{ name }}
     requirements:
