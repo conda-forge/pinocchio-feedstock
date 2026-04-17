@@ -65,7 +65,7 @@ outputs:
             - ${{ name }}_default*
             - ${{ name }}_parsers*
       - script:
-          - cmake-package-check pinocchio
+          - cmake-package-check pinocchio --target pinocchio::pinocchio
         requirements:
           run:
             - cmake-package-check
