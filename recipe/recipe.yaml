@@ -1,0 +1,158 @@
+schema_version: 1
+
+context:
+  name: pinocchio
+  cppname: libpinocchio
+  pythonname: pinocchio-python
+  version: 4.0.0
+
+recipe:
+  name: ${{ name|lower }}-split
+  version: ${{ version }}
+
+source:
+  url: https://github.com/stack-of-tasks/${{ name }}/releases/download/v${{ version }}/${{ name }}-${{ version }}.tar.gz
+  sha256: 0cfa23e2874eb9978dd7d952f3d8df855adb14e166b1a31860ac5c28c6348fb4
+
+build:
+  number: 1
+
+outputs:
+  - package:
+      name: ${{ cppname }}
+    build:
+      script:
+        - if: win
+          then: build_pinocchio_cpp.bat
+          else: build_pinocchio_cpp.sh
+    requirements:
+      build:
+        - ${{ compiler('cxx') }}
+        - ${{ stdlib("c") }}
+        - cmake
+        - ninja
+        - if: linux
+          then: libgomp
+        - if: osx
+          then: llvm-openmp
+      host:
+        - eigen
+        - urdfdom
+        - libcoal
+        - libboost-devel
+        - casadi
+        - qhull
+        - if: not win
+          then: qhull-static
+        - console_bridge
+        - libsdformat
+        - libgz-math
+        - eigen-abi-devel
+      run:
+        - libboost-devel
+        - libcoal
+        - if: not win
+          then: qhull-static
+      run_exports:
+        - ${{ pin_subpackage(cppname, upper_bound='x.x.x') }}
+    tests:
+      # test package contents
+      - package_contents:
+          include:
+            - pinocchio/fwd.hpp
+            - pinocchio/config.hpp
+          lib:
+            - ${{ name }}_default*
+            - ${{ name }}_parsers*
+      - script:
+          - cmake-package-check pinocchio --target pinocchio::pinocchio
+        requirements:
+          run:
+            - cmake-package-check
+            - ${{ compiler('c') }}
+            - ${{ compiler('cxx') }}
+  - package:
+      name: ${{ pythonname }}
+    build:
+      script:
+        - if: win
+          then: build_pinocchio_python.bat
+          else: build_pinocchio_python.sh
+    requirements:
+      build:
+        - if: build_platform != target_platform
+          then:
+            - python
+            - cross-python_${{ target_platform }}
+            - numpy
+        - ${{ compiler('cxx') }}
+        - ${{ stdlib("c") }}
+        - if: win
+          then: clang
+        - cmake
+        - ninja
+      host:
+        - eigen
+        - eigenpy
+        - coal
+        - libboost-devel
+        - libboost-python-devel
+        - python
+        # On Windows, Numpy 2.0 don't allow to export the PY_ARRAY_UNIQUE_SYMBOL.
+        # This has been fixed in Numpy 2.1.
+        - if: win
+          then: numpy >=2.1
+          else: numpy
+        - casadi
+        - ${{ pin_subpackage(cppname, exact=true) }}
+        - eigen-abi-devel
+      run:
+        - python
+        - coal-python
+        - if: win
+          then: numpy >=2.1
+        - ${{ pin_subpackage(cppname, exact=true) }}
+    tests:
+      - python:
+          imports:
+            - pinocchio
+      - script:
+          interpreter: python
+          content: |
+            import importlib.metadata as metadata
+            assert metadata.version('pin') == '${{ version }}'
+      - script:
+          - python -m pip show pin
+        requirements:
+          run:
+            - pip
+            - python
+  - package:
+      name: ${{ name }}
+    requirements:
+      host:
+        # Explicitly add a python requirement so that the hash changes between python version
+        - python
+      run:
+        - ${{ pin_subpackage(cppname, exact=true) }}
+        - ${{ pin_subpackage(pythonname, exact=true) }}
+      run_exports:
+        - ${{ pin_subpackage(cppname, upper_bound='x.x.x') }}
+
+about:
+  license: BSD-2-Clause
+  license_file: LICENSE
+  summary: A fast and flexible implementation of Rigid Body Dynamics algorithms and their analytical derivatives
+  homepage: http://github.com/stack-of-tasks/pinocchio
+  repository: https://github.com/stack-of-tasks/pinocchio
+
+extra:
+  feedstock-name: pinocchio
+  recipe-maintainers:
+    - ManifoldFR
+    - nim65s
+    - fabinsch
+    - jorisv
+    - jcarpent
+    - wolfv
+    - ymontmarin
