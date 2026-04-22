@@ -21,7 +21,7 @@ cxx_compiler_version:
 docker_image:
 - quay.io/condaforge/linux-anvil-x86_64:alma9
 eigen_abi_devel:
-- 3.4.0
+- 5.0.1
 libboost_devel:
 - '1.88'
 libboost_python_devel:
