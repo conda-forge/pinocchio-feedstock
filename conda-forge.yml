@@ -1,5 +1,3 @@
-azure:
-  store_build_artifacts: true
 bot:
   automerge: true
 build_platform:
