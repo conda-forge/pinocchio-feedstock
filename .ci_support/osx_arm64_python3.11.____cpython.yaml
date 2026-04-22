@@ -23,7 +23,7 @@ cxx_compiler:
 cxx_compiler_version:
 - '19'
 eigen_abi_devel:
-- 3.4.0
+- 5.0.1
 libboost_devel:
 - '1.88'
 libboost_python_devel:
