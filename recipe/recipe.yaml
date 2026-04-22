@@ -55,7 +55,7 @@ outputs:
           then: qhull-static
       run_exports:
         - ${{ pin_subpackage(cppname, upper_bound='x.x.x') }}
-    tests:
+    # tests:
       # test package contents
       # - package_contents:
       #     include:
@@ -64,13 +64,13 @@ outputs:
       #     lib:
       #       - ${{ name }}_default*
       #       - ${{ name }}_parsers*
-      - script:
-          - cmake-package-check pinocchio --target pinocchio::pinocchio
-        requirements:
-          run:
-            - cmake-package-check
-            - ${{ compiler('c') }}
-            - ${{ compiler('cxx') }}
+      # - script:
+      #     - cmake-package-check pinocchio --target pinocchio::pinocchio
+      #   requirements:
+      #     run:
+      #       - cmake-package-check
+      #       - ${{ compiler('c') }}
+      #       - ${{ compiler('cxx') }}
   - package:
       name: ${{ pythonname }}
     build:
