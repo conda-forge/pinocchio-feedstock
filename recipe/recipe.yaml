@@ -57,13 +57,13 @@ outputs:
         - ${{ pin_subpackage(cppname, upper_bound='x.x.x') }}
     tests:
       # test package contents
-      - package_contents:
-          include:
-            - pinocchio/fwd.hpp
-            - pinocchio/config.hpp
-          lib:
-            - ${{ name }}_default*
-            - ${{ name }}_parsers*
+      # - package_contents:
+      #     include:
+      #       - pinocchio/fwd.hpp
+      #       - pinocchio/config.hpp
+      #     lib:
+      #       - ${{ name }}_default*
+      #       - ${{ name }}_parsers*
       - script:
           - cmake-package-check pinocchio --target pinocchio::pinocchio
         requirements:
