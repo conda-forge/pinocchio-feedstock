@@ -37,7 +37,7 @@ outputs:
       host:
         - eigen
         - urdfdom
-        - coal
+        - libcoal
         - libboost-devel
         - casadi
         - qhull
@@ -74,7 +74,8 @@ outputs:
       host:
         - eigen
         - eigenpy
-        - hpp-fcl
+        - libcoal
+        - coal-python
         - libboost-devel
         - libboost-python-devel
         - python
@@ -91,6 +92,7 @@ outputs:
       run:
         - python
         - numpy >=2.1      # [win and py>=310]
+        - coal-python
         - {{ pin_compatible('numpy') }}  # [win and py<310]
         - {{ pin_subpackage(cppname, exact=true) }}
     test:
