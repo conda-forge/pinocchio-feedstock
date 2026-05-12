@@ -10,9 +10,12 @@ package:
 source:
   url: https://github.com/stack-of-tasks/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
   sha256: 0cfa23e2874eb9978dd7d952f3d8df855adb14e166b1a31860ac5c28c6348fb4
+  patches:
+    # Eigen5 support
+    - patches/0001-casadi-Fix-build-with-eigen5.patch
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage(name, max_pin='x.x.x') }}
 
@@ -34,7 +37,7 @@ outputs:
       host:
         - eigen
         - urdfdom
-        - coal
+        - libcoal
         - libboost-devel
         - casadi
         - qhull
@@ -71,7 +74,8 @@ outputs:
       host:
         - eigen
         - eigenpy
-        - hpp-fcl
+        - libcoal
+        - coal-python
         - libboost-devel
         - libboost-python-devel
         - python
@@ -88,6 +92,7 @@ outputs:
       run:
         - python
         - numpy >=2.1      # [win and py>=310]
+        - coal-python
         - {{ pin_compatible('numpy') }}  # [win and py<310]
         - {{ pin_subpackage(cppname, exact=true) }}
     test:
