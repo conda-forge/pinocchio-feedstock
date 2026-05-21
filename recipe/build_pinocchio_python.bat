@@ -1,5 +1,5 @@
 REM It's important to remove build to avoid uninstalling
-REM libcoal file. This create some strange issues with conda-forge.
+REM pinocchio file. This create some strange issues with conda-forge.
 
 rm -rf build
 mkdir build
