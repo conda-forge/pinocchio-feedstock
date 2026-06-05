@@ -45,7 +45,7 @@ qhull:
 target_platform:
 - osx-arm64
 urdfdom:
-- '5.1'
+- '6'
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version

@@ -29,4 +29,4 @@ qhull:
 target_platform:
 - win-64
 urdfdom:
-- '5.1'
+- '6'
