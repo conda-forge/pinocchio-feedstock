@@ -10,9 +10,6 @@ package:
 source:
   url: https://github.com/stack-of-tasks/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
   sha256: b2ac9575bd4f38e0584e0d61586a95de1aeaa17c6877e31e99f1d4b913d602d8
-  patches:
-    # Eigen5 support
-    - patches/0001-casadi-Fix-build-with-eigen5.patch
 
 build:
   number: 0
