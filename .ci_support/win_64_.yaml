@@ -1,3 +1,5 @@
+c_compiler:
+- vs2022
 c_stdlib:
 - vs
 casadi:
