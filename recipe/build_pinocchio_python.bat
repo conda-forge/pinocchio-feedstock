@@ -5,9 +5,6 @@ rm -rf build
 mkdir build
 cd build
 
-set "CC=clang-cl.exe"
-set "CXX=clang-cl.exe"
-
 :: Configure
 :: Turn OpenMP OFF because of https://github.com/stack-of-tasks/pinocchio/issues/2440
 cmake ^

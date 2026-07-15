@@ -1,5 +1,7 @@
 #! /bin/sh
 
+set -e
+
 mkdir build
 cd build
 
@@ -16,7 +18,7 @@ cmake ${CMAKE_ARGS} .. \
       -DBUILD_WITH_SDF_SUPPORT=ON \
       -DBUILD_TESTING=OFF
 
-ninja -j1
+ninja -j$CPU_COUNT
 ninja install
 
 if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then
