@@ -135,6 +135,17 @@ outputs:
         - ${{ pin_subpackage(pythonname, exact=true) }}
       run_exports:
         - ${{ pin_subpackage(cppname, upper_bound='x.x.x') }}
+    tests:
+      - python:
+          imports:
+            - pinocchio
+      - script:
+          - cmake-package-check pinocchio --target pinocchio::pinocchio
+        requirements:
+          run:
+            - cmake-package-check
+            - ${{ compiler('c') }}
+            - ${{ compiler('cxx') }}
 
 about:
   license: BSD-2-Clause
