@@ -11,9 +11,11 @@ channel_targets:
 console_bridge:
 - '1.0'
 cxx_compiler:
-- vs2022
+- clang-cl
 eigen_abi_devel:
 - 5.0.1
+github_actions_labels:
+- namespace-profile-16cpu-on-win-64
 libboost_devel:
 - '1.90'
 libboost_python_devel:
@@ -23,6 +25,10 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
+- 3.10.* *_cpython
+- 3.11.* *_cpython
+- 3.12.* *_cpython
+- 3.13.* *_cp313
 - 3.14.* *_cp314
 qhull:
 - '2020.2'

@@ -43,6 +43,6 @@ cmake ${CMAKE_ARGS} .. \
       -DGENERATE_PYTHON_STUBS=$GENERATE_PYTHON_STUBS \
       -DPYTHON_EXECUTABLE=$PYTHON
 
-ninja -j1
+ninja -j$CPU_COUNT
 ninja install
 "$PYTHON" "$RECIPE_DIR/install_pin_dist_info.py"

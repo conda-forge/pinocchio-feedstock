@@ -1,0 +1,9 @@
+# We use namespace large CPU runners
+# https://conda-forge.org/docs/reference/runners/#namespaceso
+github_actions_labels:
+  - namespace-profile-16cpu-on-linux-64       # [linux64]
+  - namespace-profile-16cpu-on-linux-aarch64  # [linux and aarch64]
+  - namespace-profile-12cpu-on-osx-arm64      # [osx]
+  - namespace-profile-16cpu-on-win-64         # [win]
+cxx_compiler:         # [win]
+  - clang-cl          # [win]

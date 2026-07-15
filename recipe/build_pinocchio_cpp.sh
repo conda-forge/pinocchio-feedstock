@@ -1,12 +1,9 @@
 #! /bin/sh
 
+set -e
+
 mkdir build
 cd build
-
-# Cross compiling for linux-ppc64le crash the agent
-if [[ "${target_platform}" == linux-ppc64le ]]; then
-  CPU_COUNT=1
-fi
 
 cmake ${CMAKE_ARGS} .. \
       -GNinja \
