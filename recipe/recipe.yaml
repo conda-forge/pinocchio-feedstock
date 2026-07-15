@@ -4,7 +4,7 @@ context:
   name: pinocchio
   cppname: libpinocchio
   pythonname: pinocchio-python
-  version: 4.0.0
+  version: 4.1.0
 
 recipe:
   name: ${{ name|lower }}-split
@@ -12,9 +12,7 @@ recipe:
 
 source:
   url: https://github.com/stack-of-tasks/${{ name }}/releases/download/v${{ version }}/${{ name }}-${{ version }}.tar.gz
-  sha256: 0cfa23e2874eb9978dd7d952f3d8df855adb14e166b1a31860ac5c28c6348fb4
-  patches:
-    - patches/0001-casadi-Fix-build-with-eigen5.patch
+  sha256: b2ac9575bd4f38e0584e0d61586a95de1aeaa17c6877e31e99f1d4b913d602d8
 
 build:
   number: 3
