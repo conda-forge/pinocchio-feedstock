@@ -86,8 +86,6 @@ outputs:
             - numpy
         - ${{ compiler('cxx') }}
         - ${{ stdlib("c") }}
-        - if: win
-          then: clang
         - cmake
         - ninja
       host:
