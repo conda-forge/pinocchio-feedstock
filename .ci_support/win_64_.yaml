@@ -14,6 +14,8 @@ cxx_compiler:
 - clang-cl
 eigen_abi_devel:
 - 5.0.1
+github_actions_labels:
+- namespace-profile-16cpu-on-win-64
 libboost_devel:
 - '1.90'
 libboost_python_devel:

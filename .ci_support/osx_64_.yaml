@@ -24,6 +24,8 @@ cxx_compiler_version:
 - '19'
 eigen_abi_devel:
 - 5.0.1
+github_actions_labels:
+- namespace-profile-12cpu-on-osx-arm64
 libboost_devel:
 - '1.90'
 libboost_python_devel:
